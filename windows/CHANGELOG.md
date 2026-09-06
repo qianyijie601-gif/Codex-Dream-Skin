@@ -1,5 +1,9 @@
 # Windows Changelog
 
+## 1.5.17
+
+- 发布候选：原生字体保留（#399 / #403）、首页圆角（#394 / #396，感谢 @chenzhaoxuan0），以及此前未发布的横向溢出校验（#386）和受管 CDP profile（#390）。首次使用受管 profile 需要重新登录；发布前必须验证第二次启动保留登录且 runtime 交接后 CDP 可用。完整说明见 [v1.5.17 发布说明](../docs/releases/v1.5.17.md)。
+
 ## Unreleased
 
 ### 新增

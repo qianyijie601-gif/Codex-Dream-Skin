@@ -40,6 +40,14 @@ const findNestedHas = (css) => {
 };
 
 for (const file of files) {
+  test(`base skin preserves native body fonts in ${file}`, () => {
+    const css = readFileSync(join(root, file), "utf8");
+    const bodyRule = css.match(/html\[data-dream-skin="active"\] body\s*\{([^}]*)\}/);
+    assert.ok(bodyRule, "The base body rule must remain present.");
+    assert.doesNotMatch(bodyRule[1], /\bfont(?:-family)?\s*:/i,
+      "The base skin must not override native UI or inherited code fonts (#399).");
+  });
+
   test(`no nested :has() in ${file}`, () => {
     const css = readFileSync(join(root, file), "utf8");
     const findings = findNestedHas(css);
