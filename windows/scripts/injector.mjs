@@ -267,28 +267,79 @@ async function connectBrowserIdentityAnchor(port, expectedBrowserId) {
 }
 
 async function loadPayload() {
-  const [css, template, art] = await Promise.all([
+  const memeFiles = ["dashu", "meiji", "wangcai"].flatMap((character) => (
+    Array.from({ length: 20 }, (_, index) => ({
+      key: `${character}-${index}`,
+      path: path.join(root, "assets", "memes", character, `${character}-${String(index).padStart(2, "0")}.png`),
+    }))
+  ));
+  const [
+    cssSource,
+    template,
+    art,
+    dashuAvatar,
+    meijiAvatar,
+    wangcaiAvatar,
+    suggestionSticker1,
+    suggestionSticker2,
+    suggestionSticker3,
+    suggestionSticker4,
+    memeBuffers,
+  ] = await Promise.all([
     fs.readFile(path.join(root, "assets", "dream-skin.css"), "utf8"),
     fs.readFile(path.join(root, "assets", "renderer-inject.js"), "utf8"),
     fs.readFile(path.join(root, "assets", "dream-reference.png")),
+    fs.readFile(path.join(root, "assets", "avatar-dashu.png")),
+    fs.readFile(path.join(root, "assets", "avatar-meiji.png")),
+    fs.readFile(path.join(root, "assets", "avatar-wangcai.png")),
+    fs.readFile(path.join(root, "assets", "suggestion-sticker-1.png")),
+    fs.readFile(path.join(root, "assets", "suggestion-sticker-2.png")),
+    fs.readFile(path.join(root, "assets", "suggestion-sticker-3.png")),
+    fs.readFile(path.join(root, "assets", "suggestion-sticker-4.png")),
+    Promise.all(memeFiles.map((file) => fs.readFile(file.path))),
   ]);
+  const imageDataUrl = (buffer) => `data:image/png;base64,${buffer.toString("base64")}`;
+  const memeUrls = Object.fromEntries(memeFiles.map((file, index) => [file.key, imageDataUrl(memeBuffers[index])]));
+  const css = cssSource
+    .replaceAll("__DREAM_AVATAR_DASHU__", imageDataUrl(dashuAvatar))
+    .replaceAll("__DREAM_AVATAR_MEIJI__", imageDataUrl(meijiAvatar))
+    .replaceAll("__DREAM_AVATAR_WANGCAI__", imageDataUrl(wangcaiAvatar))
+    .replaceAll("__DREAM_SUGGESTION_STICKER_1__", imageDataUrl(suggestionSticker1))
+    .replaceAll("__DREAM_SUGGESTION_STICKER_2__", imageDataUrl(suggestionSticker2))
+    .replaceAll("__DREAM_SUGGESTION_STICKER_3__", imageDataUrl(suggestionSticker3))
+    .replaceAll("__DREAM_SUGGESTION_STICKER_4__", imageDataUrl(suggestionSticker4));
   const artDataUrl = `data:image/png;base64,${art.toString("base64")}`;
   return template
-    .replace("__DREAM_CSS_JSON__", JSON.stringify(css))
-    .replace("__DREAM_ART_JSON__", JSON.stringify(artDataUrl));
+    .replaceAll("__DREAM_CSS_JSON__", JSON.stringify(css))
+    .replaceAll("__DREAM_ART_JSON__", JSON.stringify(artDataUrl))
+    .replaceAll("__DREAM_MEMES_JSON__", JSON.stringify(memeUrls));
 }
 
 async function probeSession(session) {
   return session.evaluate(`(() => {
     const markers = {
-      shell: Boolean(document.querySelector('main.main-surface')),
+      shell: Boolean(document.querySelector('main.main-surface, main[class*="_MainContentSurface_"]')),
       sidebar: Boolean(document.querySelector('aside.app-shell-left-panel')),
       composer: Boolean(document.querySelector('.composer-surface-chrome')),
       main: Boolean(document.querySelector('[role="main"]')),
+      settings: [...document.querySelectorAll('button, [role="button"], a, [role="link"]')].some((control) => {
+        const label = ((control.textContent || "") + " " + (control.getAttribute?.("aria-label") || ""))
+          .replace(/\\s+/g, " ")
+          .trim();
+        return /(?:返回应用|back to app)/i.test(label);
+      }) || [...document.querySelectorAll('input')].some((input) => {
+        const label = ((input.placeholder || "") + " " + (input.getAttribute?.("aria-label") || ""))
+          .replace(/\\s+/g, " ")
+          .trim();
+        return /(?:搜索设置|search settings)/i.test(label);
+      }),
     };
     return {
       markers,
-      codex: location.protocol === 'app:' && markers.shell && markers.sidebar && (markers.composer || markers.main),
+      codex: location.protocol === 'app:' && markers.shell &&
+        // Codex 26.820 removed role="main" from some thread layouts. The
+        // app-protocol shell plus its dedicated sidebar remains distinctive.
+        (markers.settings || markers.sidebar),
     };
   })()`);
 }
@@ -367,7 +418,7 @@ async function verifySession(session) {
       return { x: Math.round(r.x), y: Math.round(r.y), width: Math.round(r.width), height: Math.round(r.height) };
     };
     const home = document.querySelector('.dream-home');
-    const suggestions = home?.querySelector('.group\\\\/home-suggestions') ?? null;
+    const suggestions = home?.querySelector('#codex-dream-home-suggestions, .group\\\\/home-suggestions') ?? null;
     const cards = suggestions ? [...suggestions.querySelectorAll('button')].map(box) : [];
     const result = {
       installed: document.documentElement.classList.contains('codex-dream-skin'),
@@ -381,7 +432,9 @@ async function verifySession(session) {
       hero: box(home?.firstElementChild?.firstElementChild?.firstElementChild),
       cards,
       composer: box(document.querySelector('.composer-surface-chrome')),
+      mainSurface: box(document.querySelector('main.main-surface, main[class*="_MainContentSurface_"]')),
       sidebar: box(document.querySelector('aside.app-shell-left-panel')),
+      settingsPresent: document.documentElement.classList.contains('dream-settings-page'),
       viewport: { width: innerWidth, height: innerHeight },
       documentOverflow: {
         x: document.documentElement.scrollWidth > document.documentElement.clientWidth,
@@ -390,9 +443,9 @@ async function verifySession(session) {
     };
     result.pass = result.installed && result.version === result.expectedVersion &&
       result.stylePresent && result.chromePresent &&
-      result.chromePointerEvents === 'none' && Boolean(result.composer) && Boolean(result.sidebar) &&
-      (!result.homePresent || (Boolean(result.hero) &&
-        (!result.suggestionsPresent || (result.cards.length >= 2 && result.cards.length <= 4))));
+      result.chromePointerEvents === 'none' && Boolean(result.mainSurface) &&
+      (result.settingsPresent || Boolean(result.sidebar)) &&
+      (!result.homePresent || result.suggestionsPresent);
     return result;
   })()`);
 }
@@ -623,7 +676,9 @@ if (options.mode === "self-test") {
   console.log(JSON.stringify({ pass: true, version: SKIN_VERSION, test: "loopback-cdp-validation" }));
 } else if (options.mode === "check-payload") {
   const payload = await loadPayload();
-  if (payload.includes("__DREAM_CSS_JSON__") || payload.includes("__DREAM_ART_JSON__")) {
+  if (payload.includes("__DREAM_CSS_JSON__") || payload.includes("__DREAM_ART_JSON__") ||
+      payload.includes("__DREAM_MEMES_JSON__") || payload.includes("__DREAM_AVATAR_") ||
+      payload.includes("__DREAM_SUGGESTION_STICKER_")) {
     throw new Error("Payload placeholders were not fully replaced");
   }
   console.log(JSON.stringify({ pass: true, version: SKIN_VERSION, payloadBytes: Buffer.byteLength(payload) }));

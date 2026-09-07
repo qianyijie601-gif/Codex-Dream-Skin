@@ -8,3 +8,18 @@ README.preview.html
 docs/readme-preview.html
 release/
 runtime/
+
+# Local source gathering and visual-QA artifacts for the character theme.
+windows/assets/memes-generated-backup/
+windows/assets/official-memes-source/
+windows/assets/*preview*.png
+windows/assets/*contact-sheet*.png
+windows/assets/memes/*-sheet.png
+pets/*/imagegen-jobs.json
+pets/*/pet_request.json
+pets/*/decoded/
+pets/*/frames/
+pets/*/prompts/
+pets/*/qa/
+pets/*/references/
+pets/*/final/validation.json

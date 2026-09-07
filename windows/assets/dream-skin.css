@@ -458,3 +458,2267 @@ html.codex-dream-skin [data-message-author-role] {
 @media (prefers-reduced-motion: reduce) {
   .dream-sparkles i { animation: none !important; }
 }
+
+/* Anime Sakura Night override. Keep this block last so it can reskin the stock Dream palette. */
+:root.codex-dream-skin {
+  color-scheme: dark !important;
+  --dream-ink: #f5f7ff;
+  --dream-purple: #8aa7ff;
+  --dream-violet: #b88cff;
+  --dream-pink: #ff7ab6;
+  --dream-blush: #11172a;
+  --dream-pearl: rgba(20, 26, 47, .88);
+  --dream-line: rgba(125, 211, 252, .28);
+  --anime-bg: #080b13;
+  --anime-panel: rgba(14, 19, 35, .92);
+  --anime-panel-soft: rgba(22, 29, 52, .78);
+  --anime-text: #eef4ff;
+  --anime-muted: #a7b6d8;
+  --anime-sakura: #ff7ab6;
+  --anime-cyan: #7dd3fc;
+  --anime-violet: #b88cff;
+  --anime-mint: #5eead4;
+  --anime-gold: #ffd166;
+  --anime-border: rgba(125, 211, 252, .22);
+}
+
+html.codex-dream-skin body {
+  background:
+    radial-gradient(circle at 82% 8%, rgba(255, 122, 182, .20), transparent 24%),
+    radial-gradient(circle at 22% 0%, rgba(125, 211, 252, .16), transparent 27%),
+    radial-gradient(circle at 48% 102%, rgba(184, 140, 255, .18), transparent 36%),
+    linear-gradient(135deg, #080b13 0%, #11172a 48%, #151022 100%) !important;
+  color: var(--anime-text) !important;
+}
+
+html.codex-dream-skin body::before {
+  opacity: .28;
+  background-image:
+    radial-gradient(circle, rgba(255, 122, 182, .72) 0 1px, transparent 2px),
+    radial-gradient(circle, rgba(125, 211, 252, .56) 0 1px, transparent 2px),
+    linear-gradient(120deg, transparent 0 46%, rgba(255,255,255,.08) 48%, transparent 50%);
+  background-position: 0 0, 23px 31px, 0 0;
+  background-size: 64px 64px, 91px 91px, 220px 220px;
+}
+
+html.codex-dream-skin aside.app-shell-left-panel {
+  background:
+    linear-gradient(180deg, rgba(12, 16, 30, .98), rgba(18, 24, 43, .96)) !important;
+  border-color: rgba(125, 211, 252, .20) !important;
+  box-shadow: 10px 0 32px rgba(2, 8, 23, .34), inset -1px 0 rgba(255,255,255,.05) !important;
+  color: var(--anime-text) !important;
+}
+
+html.codex-dream-skin aside.app-shell-left-panel button {
+  color: #d8e5ff !important;
+}
+
+html.codex-dream-skin aside.app-shell-left-panel button:hover,
+html.codex-dream-skin aside.app-shell-left-panel [class~="bg-token-list-hover-background"],
+html.codex-dream-skin aside.app-shell-left-panel [aria-current="page"] {
+  background: linear-gradient(90deg, rgba(125, 211, 252, .15), rgba(255, 122, 182, .12)) !important;
+  border-color: rgba(125, 211, 252, .24) !important;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.05), 0 8px 24px rgba(0,0,0,.16) !important;
+}
+
+html.codex-dream-skin aside.app-shell-left-panel button[aria-label^="切换模式"] {
+  color: var(--anime-cyan) !important;
+  text-shadow: 0 0 14px rgba(125, 211, 252, .42);
+}
+
+html.codex-dream-skin aside.app-shell-left-panel button[aria-label^="切换模式"]::after {
+  content: " 夜";
+  color: var(--anime-sakura);
+}
+
+html.codex-dream-skin main.main-surface {
+  background:
+    radial-gradient(circle at 86% 8%, rgba(255, 122, 182, .15), transparent 28%),
+    radial-gradient(circle at 18% 0%, rgba(94, 234, 212, .10), transparent 25%),
+    linear-gradient(180deg, rgba(11, 15, 28, .98), rgba(15, 20, 38, .98)) !important;
+  border-color: rgba(125, 211, 252, .18) !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.06), -8px 0 30px rgba(0,0,0,.24) !important;
+}
+
+html.codex-dream-skin main.main-surface > header.app-header-tint {
+  background:
+    linear-gradient(90deg, rgba(9, 13, 25, .96), rgba(23, 29, 52, .88), rgba(42, 27, 58, .82)) !important;
+  border-bottom: 1px solid rgba(125, 211, 252, .18) !important;
+}
+
+.dream-brand {
+  color: var(--anime-cyan);
+  text-shadow: 0 0 16px rgba(125, 211, 252, .34);
+}
+
+.dream-brand .dream-note,
+.dream-signature,
+.dream-ribbon,
+.dream-ribbon span {
+  color: var(--anime-sakura);
+  filter: drop-shadow(0 0 10px rgba(255, 122, 182, .34));
+}
+
+.dream-brand small {
+  color: var(--anime-muted);
+}
+
+.dream-polaroid {
+  display: none !important;
+}
+
+.dream-sparkles i {
+  background: var(--anime-cyan);
+  box-shadow: 0 0 12px 3px rgba(125, 211, 252, .55);
+}
+
+.dream-sparkles i:nth-child(even) {
+  background: var(--anime-sakura);
+  box-shadow: 0 0 12px 3px rgba(255, 122, 182, .48);
+}
+
+.dream-home > div:first-child > div:first-child > div:first-child {
+  border: 1px solid rgba(125, 211, 252, .30) !important;
+  background-image:
+    radial-gradient(circle at 82% 18%, rgba(255, 209, 102, .16), transparent 12%),
+    radial-gradient(circle at 70% 35%, rgba(255, 122, 182, .17), transparent 22%),
+    radial-gradient(circle at 30% 20%, rgba(125, 211, 252, .18), transparent 24%),
+    linear-gradient(135deg, rgba(12, 18, 34, .98), rgba(30, 24, 52, .94)) !important;
+  box-shadow: 0 18px 38px rgba(0,0,0,.32), 0 0 0 1px rgba(255,255,255,.05) inset !important;
+}
+
+.dream-home > div:first-child > div:first-child > div:first-child::before {
+  width: 64%;
+  background:
+    linear-gradient(90deg, rgba(9, 13, 25, .94) 0%, rgba(18, 25, 46, .86) 68%, transparent 100%),
+    repeating-linear-gradient(135deg, rgba(125,211,252,.10) 0 1px, transparent 1px 14px) !important;
+}
+
+.dream-home [data-feature="game-source"] {
+  color: #f8fbff !important;
+  text-shadow: 0 0 18px rgba(125, 211, 252, .28), 0 2px 12px rgba(0,0,0,.46);
+}
+
+.dream-home [data-feature="game-source"]::after {
+  content: "夜樱、霓虹、灵感电波，开始写你的新番企划。";
+  color: rgba(223, 235, 255, .88);
+}
+
+.dream-home [data-feature="game-source"] button {
+  border-color: rgba(125, 211, 252, .38);
+  background: rgba(125, 211, 252, .11);
+  color: #dff7ff !important;
+  box-shadow: inset 0 0 16px rgba(125, 211, 252, .08);
+}
+
+.dream-home [data-feature="game-source"] button::before {
+  content: "项目选择 · ";
+}
+
+.dream-home .group\/home-suggestions button {
+  border-color: rgba(125, 211, 252, .24) !important;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(125, 211, 252, .13), transparent 35%),
+    linear-gradient(145deg, rgba(19, 25, 45, .96), rgba(29, 22, 45, .94)) !important;
+  color: #edf4ff !important;
+  box-shadow: 0 12px 28px rgba(0,0,0,.26), inset 0 0 0 1px rgba(255,255,255,.04) !important;
+}
+
+.dream-home .group\/home-suggestions button:hover {
+  box-shadow: 0 16px 32px rgba(0,0,0,.34), 0 0 0 2px rgba(255, 122, 182, .18) !important;
+}
+
+.dream-home .group\/home-suggestions button > span:first-child > span:first-child {
+  color: #08111f !important;
+  background: linear-gradient(145deg, var(--anime-cyan), var(--anime-sakura));
+  box-shadow: 0 0 0 7px rgba(125, 211, 252, .12), 0 10px 24px rgba(255, 122, 182, .22);
+}
+
+html.codex-dream-skin .composer-surface-chrome {
+  border-color: rgba(125, 211, 252, .30) !important;
+  background:
+    radial-gradient(circle at 88% 22%, rgba(255, 122, 182, .13), transparent 25%),
+    linear-gradient(145deg, rgba(16, 22, 40, .96), rgba(25, 22, 43, .94)) !important;
+  box-shadow: 0 14px 30px rgba(0,0,0,.28), inset 0 0 0 1px rgba(255,255,255,.05) !important;
+}
+
+html.codex-dream-skin .composer-surface-chrome::before {
+  content: "星";
+  color: #08111f;
+  background: linear-gradient(145deg, var(--anime-cyan), var(--anime-gold));
+  box-shadow: 0 0 16px rgba(125, 211, 252, .36);
+}
+
+.dream-home div:has(> .horizontal-scroll-fade-mask .group\/project-selector) {
+  border-color: rgba(125, 211, 252, .20);
+  background: linear-gradient(180deg, rgba(13, 18, 34, .92), rgba(20, 24, 43, .84)) !important;
+}
+
+.dream-home div:has(> .horizontal-scroll-fade-mask .group\/project-selector)::before {
+  content: "ANIME PROJECT";
+  color: var(--anime-cyan);
+  text-shadow: 0 0 12px rgba(125, 211, 252, .28);
+}
+
+.dream-home .group\/project-selector > button {
+  border-color: rgba(125, 211, 252, .26) !important;
+  background: linear-gradient(135deg, rgba(20, 28, 50, .96), rgba(35, 25, 55, .90)) !important;
+  color: #e9f5ff !important;
+}
+
+html.codex-dream-skin .ProseMirror {
+  color: #f4f8ff !important;
+  caret-color: var(--anime-cyan) !important;
+}
+
+html.codex-dream-skin button[class~="bg-token-foreground"] {
+  background: linear-gradient(145deg, var(--anime-cyan), var(--anime-violet)) !important;
+  color: #07111f !important;
+  box-shadow: 0 8px 20px rgba(125, 211, 252, .22) !important;
+}
+
+/* Meiji + Dashu + Wangcai inspired office-memo theme. Personal fan skin, no official art embedded. */
+:root.codex-dream-skin {
+  color-scheme: light !important;
+  --dream-ink: #3a3328;
+  --dream-purple: #8b8175;
+  --dream-violet: #7a756d;
+  --dream-pink: #d9a441;
+  --dream-blush: #f7f1e6;
+  --dream-pearl: rgba(255, 252, 241, .94);
+  --dream-line: rgba(94, 82, 64, .22);
+  --mouse-ink: #3a3328;
+  --mouse-gray: #8e8a82;
+  --mouse-gray-dark: #58544e;
+  --hamster-white: #fffaf0;
+  --dog-yellow: #e6b84d;
+  --memo-paper: #f7f1e6;
+  --memo-paper-2: #fff8e9;
+  --memo-line: rgba(94, 82, 64, .18);
+  --memo-red: #d9806d;
+  --memo-green: #8bc5a3;
+}
+
+html.codex-dream-skin body {
+  background:
+    radial-gradient(circle at 16% 10%, rgba(230, 184, 77, .22), transparent 25%),
+    radial-gradient(circle at 88% 4%, rgba(142, 138, 130, .16), transparent 24%),
+    linear-gradient(90deg, rgba(94,82,64,.035) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(94,82,64,.035) 1px, transparent 1px),
+    linear-gradient(135deg, #fbf4e6 0%, #f4ead8 52%, #eee3cf 100%) !important;
+  background-size: auto, auto, 28px 28px, 28px 28px, auto !important;
+  color: var(--mouse-ink) !important;
+}
+
+html.codex-dream-skin body::before {
+  opacity: .26;
+  background-image:
+    radial-gradient(circle, rgba(88,84,78,.38) 0 1px, transparent 2px),
+    radial-gradient(circle, rgba(217,164,65,.45) 0 1px, transparent 2px);
+  background-position: 8px 6px, 34px 38px;
+  background-size: 72px 72px, 95px 95px;
+}
+
+html.codex-dream-skin aside.app-shell-left-panel {
+  background:
+    linear-gradient(180deg, rgba(255, 248, 233, .98), rgba(242, 232, 213, .96)) !important;
+  border-color: rgba(94, 82, 64, .18) !important;
+  border-radius: 0 14px 14px 0 !important;
+  box-shadow: 8px 0 28px rgba(83, 70, 49, .13), inset -1px 0 rgba(255,255,255,.75) !important;
+  color: var(--mouse-ink) !important;
+}
+
+html.codex-dream-skin aside.app-shell-left-panel button {
+  color: #4b4439 !important;
+}
+
+html.codex-dream-skin aside.app-shell-left-panel button:hover,
+html.codex-dream-skin aside.app-shell-left-panel [class~="bg-token-list-hover-background"],
+html.codex-dream-skin aside.app-shell-left-panel [aria-current="page"] {
+  background: linear-gradient(90deg, rgba(230,184,77,.22), rgba(255,250,240,.78)) !important;
+  border-color: rgba(94, 82, 64, .20) !important;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.70), 0 6px 15px rgba(83,70,49,.08) !important;
+}
+
+html.codex-dream-skin aside.app-shell-left-panel button[aria-label^="切换模式"] {
+  color: #665d51 !important;
+  text-shadow: none;
+}
+
+html.codex-dream-skin aside.app-shell-left-panel button[aria-label^="切换模式"]::after {
+  content: " 鼠";
+  color: var(--dog-yellow);
+}
+
+html.codex-dream-skin main.main-surface {
+  background:
+    linear-gradient(90deg, rgba(94,82,64,.035) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(94,82,64,.035) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255,250,240,.96), rgba(247,241,230,.96)) !important;
+  background-size: 30px 30px, 30px 30px, auto !important;
+  border-color: rgba(94,82,64,.15) !important;
+  border-radius: 14px 0 0 0 !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.86), -8px 0 26px rgba(83,70,49,.08) !important;
+}
+
+html.codex-dream-skin main.main-surface > header.app-header-tint {
+  background:
+    linear-gradient(90deg, rgba(255,250,240,.95), rgba(246,233,203,.88), rgba(230,184,77,.18)) !important;
+  border-bottom: 1px solid rgba(94,82,64,.14) !important;
+}
+
+#codex-dream-skin-chrome {
+  border-radius: 14px 0 0 0;
+}
+
+.dream-brand {
+  left: 22px;
+  top: 5px;
+  color: #4a4338;
+  text-shadow: 0 1px 0 rgba(255,255,255,.75);
+}
+
+.dream-brand .dream-note {
+  width: 31px;
+  height: 31px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--mouse-gray);
+  color: #fff8e9;
+  font: 800 15px/1 "Microsoft YaHei UI", sans-serif;
+  filter: drop-shadow(0 3px 4px rgba(83,70,49,.16));
+}
+
+.dream-brand b {
+  font-size: 15px;
+  letter-spacing: 0;
+}
+
+.dream-brand small {
+  color: #776d60;
+}
+
+.dream-signature {
+  right: 78px;
+  top: 9px;
+  color: #8b8175;
+  font: 700 15px/1.2 "Microsoft YaHei UI", sans-serif;
+  text-shadow: 0 1px 0 rgba(255,255,255,.72);
+  transform: rotate(1deg);
+}
+
+.dream-sparkles {
+  opacity: .55;
+}
+
+.dream-sparkles i,
+.dream-sparkles i:nth-child(even) {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--dog-yellow);
+  box-shadow: 0 0 0 4px rgba(230,184,77,.12), 0 4px 8px rgba(83,70,49,.12);
+  transform: rotate(9deg);
+}
+
+.dream-sparkles i::before,
+.dream-sparkles i::after {
+  display: none;
+}
+
+.dream-polaroid {
+  right: 56px;
+  top: 76px;
+  bottom: auto;
+  width: 292px;
+  height: 204px;
+  z-index: 5;
+  display: none !important;
+  border: 1px solid rgba(94,82,64,.20);
+  border-bottom-width: 1px;
+  border-radius: 16px;
+  background:
+    url("__DREAM_AVATAR_DASHU__") 16px 22px / 92px 92px no-repeat,
+    url("__DREAM_AVATAR_MEIJI__") 100px 21px / 92px 92px no-repeat,
+    url("__DREAM_AVATAR_WANGCAI__") 190px 18px / 96px 96px no-repeat,
+    linear-gradient(180deg, #fffaf0, #f0e3ca) !important;
+  box-shadow: 0 16px 34px rgba(83,70,49,.22), inset 0 0 0 8px rgba(255,255,255,.38);
+  transform: rotate(-1deg);
+}
+
+#codex-dream-skin-chrome.dream-home-shell .dream-polaroid {
+  display: block !important;
+}
+
+.dream-polaroid::before {
+  content: "大鼠   美叽   旺财";
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  top: 124px;
+  color: #4b4439;
+  font: 800 16px/1.2 "Microsoft YaHei UI", sans-serif;
+  letter-spacing: 0;
+  word-spacing: 20px;
+  text-align: center;
+  filter: none;
+}
+
+.dream-polaroid::after {
+  content: "今天也在努力活着";
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 18px;
+  padding-top: 11px;
+  border-top: 1px dashed rgba(94,82,64,.26);
+  color: #776d60;
+  font: 700 15px/1 "Microsoft YaHei UI", sans-serif;
+  text-align: center;
+}
+
+@media (max-width: 1120px) {
+  #codex-dream-skin-chrome.dream-home-shell .dream-polaroid {
+    display: none !important;
+  }
+}
+
+.dream-ribbon {
+  bottom: 70px;
+  gap: 12px;
+  color: #665d51;
+  font: 800 22px/1 "Microsoft YaHei UI", sans-serif;
+  filter: drop-shadow(0 4px 5px rgba(83,70,49,.13));
+}
+
+.dream-ribbon span {
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: rgba(255,250,240,.72);
+  color: #8b8175;
+  font-size: 12px;
+  border: 1px solid rgba(94,82,64,.14);
+}
+
+.dream-home > div:first-child > div:first-child > div:first-child {
+  border: 1px solid rgba(94,82,64,.18) !important;
+  border-radius: 18px !important;
+  background:
+    radial-gradient(circle at 76% 26%, rgba(230,184,77,.28), transparent 18%),
+    radial-gradient(circle at 92% 64%, rgba(142,138,130,.18), transparent 21%),
+    linear-gradient(90deg, rgba(94,82,64,.92) 0 48%, rgba(94,82,64,.68) 58%, transparent 80%),
+    linear-gradient(135deg, #fffaf0, #efe1c8) !important;
+  box-shadow: 0 16px 32px rgba(83,70,49,.14), inset 0 0 0 5px rgba(255,255,255,.22) !important;
+}
+
+.dream-home > div:first-child > div:first-child > div:first-child::before {
+  width: 60%;
+  border-radius: 17px 0 0 17px;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 23px, rgba(255,250,240,.09) 24px),
+    linear-gradient(90deg, rgba(58,51,40,.96), rgba(88,78,63,.72), transparent) !important;
+}
+
+.dream-home > div:first-child > div:first-child > div:first-child::after {
+  content: "鼠命\A打工";
+  white-space: pre;
+  position: absolute;
+  right: 58px;
+  top: 46px;
+  width: 116px;
+  height: 116px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #fffaf0 0 16px, transparent 17px), var(--mouse-gray);
+  color: #fffaf0;
+  font: 900 23px/1.14 "Microsoft YaHei UI", sans-serif;
+  text-align: center;
+  box-shadow: 0 10px 24px rgba(83,70,49,.18), inset 0 -8px rgba(0,0,0,.08);
+}
+
+.dream-home [data-feature="game-source"] {
+  color: #fff8e9 !important;
+  text-shadow: 0 2px 10px rgba(35,29,22,.36);
+}
+
+.dream-home [data-feature="game-source"]::after {
+  content: "把需求写进便签，把精神状态交给鼠鼠。";
+  color: rgba(255,248,233,.92);
+}
+
+.dream-home [data-feature="game-source"] button {
+  border-color: rgba(255,248,233,.52);
+  background: rgba(255,248,233,.16);
+  color: #fff8e9 !important;
+  box-shadow: inset 0 0 12px rgba(255,255,255,.10);
+}
+
+.dream-home [data-feature="game-source"] button::before {
+  content: "工位 · ";
+}
+
+.dream-home .group\/home-suggestions button {
+  min-height: 122px !important;
+  border-color: rgba(94,82,64,.18) !important;
+  border-radius: 14px !important;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.38), transparent 28%),
+    repeating-linear-gradient(0deg, transparent 0 24px, rgba(94,82,64,.055) 25px),
+    linear-gradient(145deg, #fff8e9, #f1e3ca) !important;
+  color: #3a3328 !important;
+  box-shadow: 0 10px 20px rgba(83,70,49,.10), inset 0 0 0 1px rgba(255,255,255,.65) !important;
+}
+
+.dream-home .group\/home-suggestions button:hover {
+  transform: rotate(-.4deg) translateY(-3px) !important;
+  box-shadow: 0 14px 26px rgba(83,70,49,.15), 0 0 0 2px rgba(230,184,77,.22) !important;
+}
+
+.dream-home .group\/home-suggestions button > span:first-child > span:first-child {
+  color: #3a3328 !important;
+  background: linear-gradient(145deg, #f5d48b, #d9a441);
+  box-shadow: 0 0 0 7px rgba(230,184,77,.14), 0 6px 13px rgba(83,70,49,.12);
+}
+
+html.codex-dream-skin .composer-surface-chrome {
+  border: 1px solid rgba(94,82,64,.20) !important;
+  border-radius: 16px !important;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 24px, rgba(94,82,64,.05) 25px),
+    linear-gradient(145deg, rgba(255,250,240,.97), rgba(242,232,213,.94)) !important;
+  box-shadow: 0 12px 26px rgba(83,70,49,.12), inset 0 0 0 1px rgba(255,255,255,.68) !important;
+}
+
+html.codex-dream-skin .composer-surface-chrome::before {
+  content: "贴";
+  color: #3a3328;
+  background: linear-gradient(145deg, #f5d48b, #d9a441);
+  box-shadow: 0 5px 12px rgba(83,70,49,.16);
+}
+
+.dream-home div:has(> .horizontal-scroll-fade-mask .group\/project-selector) {
+  border-color: rgba(94,82,64,.15);
+  background: linear-gradient(180deg, rgba(255,250,240,.92), rgba(242,232,213,.82)) !important;
+}
+
+.dream-home div:has(> .horizontal-scroll-fade-mask .group\/project-selector)::before {
+  content: "鼠鼠工位";
+  color: #665d51;
+  text-shadow: 0 1px rgba(255,255,255,.72);
+}
+
+.dream-home .group\/project-selector > button {
+  border-color: rgba(94,82,64,.20) !important;
+  background: linear-gradient(135deg, rgba(255,250,240,.94), rgba(246,233,203,.86)) !important;
+  color: #4b4439 !important;
+}
+
+html.codex-dream-skin .ProseMirror {
+  color: #3a3328 !important;
+  caret-color: #b47b1f !important;
+}
+
+html.codex-dream-skin button[class~="bg-token-foreground"] {
+  background: linear-gradient(145deg, #e9c66d, #d9a441) !important;
+  color: #3a3328 !important;
+  box-shadow: 0 7px 16px rgba(83,70,49,.16) !important;
+}
+
+/* Extra memo-workstation details for the Meiji/Dashu/Wangcai theme. */
+html.codex-dream-skin aside.app-shell-left-panel {
+  position: relative;
+}
+
+html.codex-dream-skin aside.app-shell-left-panel::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  top: 44px;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(94,82,64,.18), transparent);
+}
+
+html.codex-dream-skin aside.app-shell-left-panel button:not([aria-label^="切换模式"]) {
+  position: relative;
+  overflow: hidden;
+  border-radius: 9px !important;
+}
+
+html.codex-dream-skin aside.app-shell-left-panel button:not([aria-label^="切换模式"])::after {
+  content: "";
+  position: absolute;
+  right: 9px;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  background: var(--dog-yellow);
+  box-shadow: 0 0 0 4px rgba(230,184,77,.13);
+  transform: translateY(-50%);
+}
+
+html.codex-dream-skin aside.app-shell-left-panel button:not([aria-label^="切换模式"]):hover::after,
+html.codex-dream-skin aside.app-shell-left-panel [class~="bg-token-list-hover-background"]::after,
+html.codex-dream-skin aside.app-shell-left-panel [aria-current="page"]::after {
+  opacity: 1;
+}
+
+html.codex-dream-skin aside.app-shell-left-panel [class~="bg-token-list-hover-background"],
+html.codex-dream-skin aside.app-shell-left-panel [aria-current="page"] {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(230,184,77,.24), rgba(255,250,240,.88)),
+    repeating-linear-gradient(0deg, transparent 0 20px, rgba(94,82,64,.052) 21px) !important;
+  border: 1px solid rgba(94,82,64,.18) !important;
+  box-shadow: inset 4px 0 0 rgba(217,164,65,.72), 0 6px 15px rgba(83,70,49,.09) !important;
+}
+
+.dream-home .group\/home-suggestions button {
+  position: relative !important;
+  isolation: isolate;
+  overflow: hidden !important;
+  transform: rotate(-.25deg);
+}
+
+.dream-home .group\/home-suggestions button:nth-child(even) {
+  transform: rotate(.25deg);
+}
+
+.dream-home .group\/home-suggestions button::before {
+  content: "";
+  position: absolute;
+  left: 16px;
+  top: 8px;
+  z-index: 0;
+  width: 46px;
+  height: 13px;
+  border: 1px solid rgba(94,82,64,.10);
+  border-radius: 3px;
+  pointer-events: none;
+  background: rgba(255,250,240,.66);
+  box-shadow: 0 2px 5px rgba(83,70,49,.08);
+  transform: rotate(-7deg);
+}
+
+.dream-home .group\/home-suggestions button::after {
+  position: absolute;
+  right: 13px;
+  top: 12px;
+  z-index: 0;
+  width: 31px;
+  height: 31px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(94,82,64,.16);
+  border-radius: 50%;
+  pointer-events: none;
+  color: #5b503f;
+  font: 800 14px/1 "Microsoft YaHei UI", sans-serif;
+  opacity: .76;
+  background: rgba(255,250,240,.78);
+  box-shadow: inset 0 0 0 3px rgba(255,255,255,.36), 0 5px 10px rgba(83,70,49,.10);
+}
+
+.dream-home .group\/home-suggestions button:nth-child(1)::after { content: "查"; }
+.dream-home .group\/home-suggestions button:nth-child(2)::after { content: "造"; }
+.dream-home .group\/home-suggestions button:nth-child(3)::after { content: "审"; }
+.dream-home .group\/home-suggestions button:nth-child(4)::after { content: "修"; }
+
+.dream-home .group\/home-suggestions button > * {
+  position: relative;
+  z-index: 1;
+}
+
+.dream-home .group\/home-suggestions button:nth-child(1) {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.42), transparent 30%),
+    repeating-linear-gradient(0deg, transparent 0 24px, rgba(94,82,64,.052) 25px),
+    linear-gradient(145deg, #fff8e9, #f4e0bf) !important;
+}
+
+.dream-home .group\/home-suggestions button:nth-child(2) {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.42), transparent 30%),
+    repeating-linear-gradient(0deg, transparent 0 24px, rgba(94,82,64,.052) 25px),
+    linear-gradient(145deg, #fffaf0, #e8dec8) !important;
+}
+
+.dream-home .group\/home-suggestions button:nth-child(3) {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.42), transparent 30%),
+    repeating-linear-gradient(0deg, transparent 0 24px, rgba(94,82,64,.052) 25px),
+    linear-gradient(145deg, #fff8e9, #f2d8c8) !important;
+}
+
+.dream-home .group\/home-suggestions button:nth-child(4) {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.42), transparent 30%),
+    repeating-linear-gradient(0deg, transparent 0 24px, rgba(94,82,64,.052) 25px),
+    linear-gradient(145deg, #fffaf0, #dfead8) !important;
+}
+
+.dream-home .group\/home-suggestions button:nth-child(1) > span:first-child > span:first-child {
+  background: linear-gradient(145deg, #f5d48b, #d9a441);
+}
+
+.dream-home .group\/home-suggestions button:nth-child(2) > span:first-child > span:first-child {
+  background: linear-gradient(145deg, #d8d1c0, #8b8175);
+}
+
+.dream-home .group\/home-suggestions button:nth-child(3) > span:first-child > span:first-child {
+  background: linear-gradient(145deg, #f0b39f, #d9806d);
+}
+
+.dream-home .group\/home-suggestions button:nth-child(4) > span:first-child > span:first-child {
+  background: linear-gradient(145deg, #b8d8b9, #8bc5a3);
+}
+
+.dream-home .group\/home-suggestions button:hover {
+  transform: rotate(0deg) translateY(-3px) !important;
+}
+
+html.codex-dream-skin aside.app-shell-left-panel [role="listitem"] [role="button"].group {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid transparent !important;
+  border-radius: 9px !important;
+}
+
+html.codex-dream-skin aside.app-shell-left-panel [role="listitem"] [role="button"].group::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 7px;
+  bottom: 7px;
+  width: 3px;
+  border-radius: 999px;
+  pointer-events: none;
+  opacity: 0;
+  background: var(--dog-yellow);
+}
+
+html.codex-dream-skin aside.app-shell-left-panel [role="listitem"] [role="button"].group::after {
+  content: "";
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  background: #8bc5a3;
+  box-shadow: 0 0 0 4px rgba(139,197,163,.14);
+  transform: translateY(-50%);
+}
+
+html.codex-dream-skin aside.app-shell-left-panel [role="listitem"] [role="button"].group:hover,
+html.codex-dream-skin aside.app-shell-left-panel [role="listitem"] [role="button"].group[aria-current="page"] {
+  background:
+    linear-gradient(90deg, rgba(230,184,77,.24), rgba(255,250,240,.90)),
+    repeating-linear-gradient(0deg, transparent 0 20px, rgba(94,82,64,.052) 21px) !important;
+  border-color: rgba(94,82,64,.18) !important;
+  box-shadow: 0 5px 12px rgba(83,70,49,.08), inset 0 0 0 1px rgba(255,255,255,.62) !important;
+}
+
+html.codex-dream-skin aside.app-shell-left-panel [role="listitem"] [role="button"].group:hover::after,
+html.codex-dream-skin aside.app-shell-left-panel [role="listitem"] [role="button"].group[aria-current="page"]::before,
+html.codex-dream-skin aside.app-shell-left-panel [role="listitem"] [role="button"].group[aria-current="page"]::after {
+  opacity: 1;
+}
+
+html.codex-dream-skin aside.app-shell-left-panel [role="listitem"] [role="button"].group[aria-current="page"] {
+  color: #3a3328 !important;
+  font-weight: 650;
+}
+
+html.codex-dream-skin aside.app-shell-left-panel [role="listitem"]::after {
+  background: linear-gradient(90deg, transparent, rgba(94,82,64,.10), transparent);
+}
+
+/* Softer cute pass for the home suggestion cards. */
+.dream-home .group\/home-suggestions {
+  gap: 12px !important;
+}
+
+.dream-home .group\/home-suggestions button {
+  min-height: 118px !important;
+  border-radius: 18px !important;
+  border-color: rgba(229, 182, 117, .24) !important;
+  background:
+    radial-gradient(circle at 18% 12%, rgba(255,255,255,.78) 0 17px, transparent 18px),
+    radial-gradient(circle at 88% 18%, rgba(255,231,176,.42), transparent 26%),
+    repeating-linear-gradient(0deg, transparent 0 25px, rgba(94,82,64,.042) 26px),
+    linear-gradient(145deg, #fffaf1, #f4e6cb) !important;
+  box-shadow: 0 10px 22px rgba(83,70,49,.10), inset 0 0 0 1px rgba(255,255,255,.72) !important;
+}
+
+.dream-home .group\/home-suggestions button::before {
+  left: 15px;
+  top: 10px;
+  width: 48px;
+  height: 12px;
+  border: 0;
+  border-radius: 5px;
+  background: rgba(255,255,247,.72);
+  box-shadow: 0 2px 6px rgba(83,70,49,.08), inset 0 0 0 1px rgba(94,82,64,.06);
+  transform: rotate(-5deg);
+}
+
+.dream-home .group\/home-suggestions button::after {
+  content: "贴贴";
+  right: 13px;
+  top: 13px;
+  width: 48px;
+  height: 25px;
+  border: 1px solid rgba(217,164,65,.16);
+  border-radius: 999px;
+  color: #7a5b21;
+  font: 800 12px/1 "Microsoft YaHei UI", sans-serif;
+  opacity: .92;
+  background: linear-gradient(145deg, rgba(255,253,246,.96), rgba(255,238,190,.92));
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,.42), 0 5px 10px rgba(83,70,49,.09);
+}
+
+.dream-home .group\/home-suggestions > :nth-child(1) button::after,
+.dream-home .group\/home-suggestions > button:nth-child(1)::after {
+  content: "探探";
+}
+
+.dream-home .group\/home-suggestions > :nth-child(2) button::after,
+.dream-home .group\/home-suggestions > button:nth-child(2)::after {
+  content: "搭搭";
+}
+
+.dream-home .group\/home-suggestions > :nth-child(3) button::after,
+.dream-home .group\/home-suggestions > button:nth-child(3)::after {
+  content: "看看";
+}
+
+.dream-home .group\/home-suggestions > :nth-child(4) button::after,
+.dream-home .group\/home-suggestions > button:nth-child(4)::after {
+  content: "补补";
+}
+
+.dream-home .group\/home-suggestions button > span:first-child > span:first-child {
+  width: 42px;
+  height: 42px;
+  color: #fffaf0 !important;
+  background:
+    radial-gradient(circle at 36% 30%, rgba(255,255,255,.58) 0 8px, transparent 9px),
+    linear-gradient(145deg, #f3ce7b, #dfa73f) !important;
+  box-shadow: 0 0 0 9px rgba(230,184,77,.14), 0 7px 14px rgba(83,70,49,.14) !important;
+}
+
+.dream-home .group\/home-suggestions > :nth-child(1) button,
+.dream-home .group\/home-suggestions > button:nth-child(1) {
+  background:
+    radial-gradient(circle at 18% 12%, rgba(255,255,255,.78) 0 17px, transparent 18px),
+    radial-gradient(circle at 88% 18%, rgba(255,231,176,.44), transparent 26%),
+    repeating-linear-gradient(0deg, transparent 0 25px, rgba(94,82,64,.04) 26px),
+    linear-gradient(145deg, #fffaf1, #f5e4bd) !important;
+}
+
+.dream-home .group\/home-suggestions > :nth-child(2) button,
+.dream-home .group\/home-suggestions > button:nth-child(2) {
+  background:
+    radial-gradient(circle at 18% 12%, rgba(255,255,255,.78) 0 17px, transparent 18px),
+    radial-gradient(circle at 88% 18%, rgba(255,214,205,.44), transparent 26%),
+    repeating-linear-gradient(0deg, transparent 0 25px, rgba(94,82,64,.04) 26px),
+    linear-gradient(145deg, #fffaf1, #f3dfd3) !important;
+}
+
+.dream-home .group\/home-suggestions > :nth-child(3) button,
+.dream-home .group\/home-suggestions > button:nth-child(3) {
+  background:
+    radial-gradient(circle at 18% 12%, rgba(255,255,255,.78) 0 17px, transparent 18px),
+    radial-gradient(circle at 88% 18%, rgba(220,235,211,.48), transparent 26%),
+    repeating-linear-gradient(0deg, transparent 0 25px, rgba(94,82,64,.04) 26px),
+    linear-gradient(145deg, #fffaf1, #e7ead7) !important;
+}
+
+.dream-home .group\/home-suggestions > :nth-child(4) button,
+.dream-home .group\/home-suggestions > button:nth-child(4) {
+  background:
+    radial-gradient(circle at 18% 12%, rgba(255,255,255,.78) 0 17px, transparent 18px),
+    radial-gradient(circle at 88% 18%, rgba(232,224,207,.50), transparent 26%),
+    repeating-linear-gradient(0deg, transparent 0 25px, rgba(94,82,64,.04) 26px),
+    linear-gradient(145deg, #fffaf1, #eee4d0) !important;
+}
+
+.dream-home .group\/home-suggestions button:hover {
+  transform: rotate(0deg) translateY(-2px) !important;
+  box-shadow: 0 14px 26px rgba(83,70,49,.13), 0 0 0 2px rgba(255,226,167,.36) !important;
+}
+
+/* Replace the hard text stamps with softer cute stickers. */
+.dream-home .group\/home-suggestions button::after {
+  content: "♡" !important;
+  right: 15px;
+  top: 15px;
+  width: 28px;
+  height: 28px;
+  border-color: rgba(217,164,65,.14);
+  border-radius: 50%;
+  color: #b9892d;
+  font: 900 16px/1 "Microsoft YaHei UI", sans-serif;
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255,255,255,.86) 0 5px, transparent 6px),
+    linear-gradient(145deg, rgba(255,250,240,.98), rgba(255,230,171,.88));
+  box-shadow: 0 5px 10px rgba(83,70,49,.08), inset 0 0 0 2px rgba(255,255,255,.44);
+}
+
+.dream-home .dream-suggestion-card-1::after {
+  content: "♡" !important;
+}
+
+.dream-home .dream-suggestion-card-2::after {
+  content: "✦" !important;
+}
+
+.dream-home .dream-suggestion-card-3::after {
+  content: "✓" !important;
+}
+
+.dream-home .dream-suggestion-card-4::after {
+  content: "!" !important;
+}
+
+.dream-home .group\/home-suggestions button {
+  border-radius: 16px !important;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.36), transparent 32%),
+    repeating-linear-gradient(0deg, transparent 0 25px, rgba(94,82,64,.038) 26px),
+    linear-gradient(145deg, #fffaf0, #f4e5c8) !important;
+}
+
+.dream-home .group\/home-suggestions button::before {
+  opacity: .72;
+  width: 44px;
+  height: 10px;
+  background: rgba(255,255,250,.78);
+  transform: rotate(-4deg);
+}
+
+/* Final meme-sticker pass for the four home suggestion cards. */
+.dream-home .group\/home-suggestions {
+  gap: 10px !important;
+}
+
+.dream-home .dream-suggestion-card,
+.dream-home .group\/home-suggestions button {
+  min-height: 140px !important;
+  padding: 96px 12px 14px !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  border-radius: 18px !important;
+  isolation: isolate;
+  overflow: hidden !important;
+  background:
+    radial-gradient(circle at 17% 13%, rgba(255,255,255,.72) 0 15px, transparent 16px),
+    radial-gradient(circle at 78% 12%, rgba(255,231,176,.40), transparent 28%),
+    repeating-linear-gradient(0deg, transparent 0 25px, rgba(94,82,64,.035) 26px),
+    linear-gradient(145deg, #fffaf1, #f3e1bd) !important;
+  box-shadow: 0 10px 22px rgba(83,70,49,.10), inset 0 0 0 1px rgba(255,255,255,.74) !important;
+}
+
+.dream-home .dream-suggestion-card::before,
+.dream-home .group\/home-suggestions button::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 50% !important;
+  top: 6px !important;
+  z-index: 0 !important;
+  width: 122px !important;
+  height: 92px !important;
+  border: 0 !important;
+  border-radius: 15px !important;
+  pointer-events: none !important;
+  opacity: 1 !important;
+  background-color: transparent !important;
+  background-image: url("__DREAM_SUGGESTION_STICKER_1__") !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  box-shadow: none !important;
+  filter: drop-shadow(0 8px 9px rgba(83,70,49,.13));
+  transform: translateX(-50%) rotate(-3deg) !important;
+}
+
+.dream-home .dream-suggestion-card::after,
+.dream-home .group\/home-suggestions button::after {
+  content: "" !important;
+  display: none !important;
+}
+
+.dream-home .dream-suggestion-card > span:first-child,
+.dream-home .group\/home-suggestions button > span:first-child {
+  display: none !important;
+}
+
+.dream-home .dream-suggestion-card > span:last-child,
+.dream-home .group\/home-suggestions button > span:last-child {
+  position: relative !important;
+  z-index: 1 !important;
+  display: block !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding-top: 10px !important;
+  border-top: 1px dashed rgba(94,82,64,.16) !important;
+  color: #4f4435 !important;
+  text-align: center !important;
+  font-size: 13px !important;
+  font-weight: 650 !important;
+  line-height: 1.25 !important;
+}
+
+.dream-home .dream-suggestion-card-1,
+.dream-home .group\/home-suggestions > :nth-child(1) button,
+.dream-home .group\/home-suggestions > button:nth-child(1) {
+  background:
+    radial-gradient(circle at 17% 13%, rgba(255,255,255,.72) 0 15px, transparent 16px),
+    radial-gradient(circle at 79% 13%, rgba(255,231,176,.45), transparent 29%),
+    repeating-linear-gradient(0deg, transparent 0 25px, rgba(94,82,64,.035) 26px),
+    linear-gradient(145deg, #fffaf1, #f6e2ba) !important;
+}
+
+.dream-home .dream-suggestion-card-2,
+.dream-home .group\/home-suggestions > :nth-child(2) button,
+.dream-home .group\/home-suggestions > button:nth-child(2) {
+  background:
+    radial-gradient(circle at 17% 13%, rgba(255,255,255,.72) 0 15px, transparent 16px),
+    radial-gradient(circle at 78% 12%, rgba(255,210,206,.42), transparent 29%),
+    repeating-linear-gradient(0deg, transparent 0 25px, rgba(94,82,64,.035) 26px),
+    linear-gradient(145deg, #fffaf1, #f2ded0) !important;
+}
+
+.dream-home .dream-suggestion-card-3,
+.dream-home .group\/home-suggestions > :nth-child(3) button,
+.dream-home .group\/home-suggestions > button:nth-child(3) {
+  background:
+    radial-gradient(circle at 17% 13%, rgba(255,255,255,.72) 0 15px, transparent 16px),
+    radial-gradient(circle at 80% 12%, rgba(221,236,213,.48), transparent 29%),
+    repeating-linear-gradient(0deg, transparent 0 25px, rgba(94,82,64,.035) 26px),
+    linear-gradient(145deg, #fffaf1, #e7ead8) !important;
+}
+
+.dream-home .dream-suggestion-card-4,
+.dream-home .group\/home-suggestions > :nth-child(4) button,
+.dream-home .group\/home-suggestions > button:nth-child(4) {
+  background:
+    radial-gradient(circle at 17% 13%, rgba(255,255,255,.72) 0 15px, transparent 16px),
+    radial-gradient(circle at 79% 12%, rgba(226,222,211,.50), transparent 29%),
+    repeating-linear-gradient(0deg, transparent 0 25px, rgba(94,82,64,.035) 26px),
+    linear-gradient(145deg, #fffaf1, #eee3cd) !important;
+}
+
+.dream-home .dream-suggestion-card-1::before,
+.dream-home .group\/home-suggestions > :nth-child(1) button::before,
+.dream-home .group\/home-suggestions > button:nth-child(1)::before {
+  background-image: url("__DREAM_SUGGESTION_STICKER_1__") !important;
+  transform: translateX(-50%) rotate(-4deg) !important;
+}
+
+.dream-home .dream-suggestion-card-2::before,
+.dream-home .group\/home-suggestions > :nth-child(2) button::before,
+.dream-home .group\/home-suggestions > button:nth-child(2)::before {
+  top: 4px !important;
+  width: 128px !important;
+  height: 96px !important;
+  background-image: url("__DREAM_SUGGESTION_STICKER_2__") !important;
+  transform: translateX(-50%) rotate(3deg) !important;
+}
+
+.dream-home .dream-suggestion-card-3::before,
+.dream-home .group\/home-suggestions > :nth-child(3) button::before,
+.dream-home .group\/home-suggestions > button:nth-child(3)::before {
+  top: 5px !important;
+  width: 124px !important;
+  height: 94px !important;
+  background-image: url("__DREAM_SUGGESTION_STICKER_3__") !important;
+  transform: translateX(-50%) rotate(-2deg) !important;
+}
+
+.dream-home .dream-suggestion-card-4::before,
+.dream-home .group\/home-suggestions > :nth-child(4) button::before,
+.dream-home .group\/home-suggestions > button:nth-child(4)::before {
+  top: 7px !important;
+  width: 132px !important;
+  height: 90px !important;
+  border-radius: 14px !important;
+  background-image: url("__DREAM_SUGGESTION_STICKER_4__") !important;
+  transform: translateX(-50%) rotate(2deg) !important;
+}
+
+.dream-home .dream-suggestion-card:hover,
+.dream-home .group\/home-suggestions button:hover {
+  transform: rotate(0deg) translateY(-2px) !important;
+  box-shadow: 0 15px 26px rgba(83,70,49,.14), 0 0 0 2px rgba(255,226,167,.36) !important;
+}
+
+.dream-home .group\/home-suggestions button.dream-suggestion-card-1::before {
+  background-image: url("__DREAM_SUGGESTION_STICKER_1__") !important;
+  transform: translateX(-50%) rotate(-4deg) !important;
+}
+
+.dream-home .group\/home-suggestions button.dream-suggestion-card-2::before {
+  top: 4px !important;
+  width: 128px !important;
+  height: 96px !important;
+  background-image: url("__DREAM_SUGGESTION_STICKER_2__") !important;
+  transform: translateX(-50%) rotate(3deg) !important;
+}
+
+.dream-home .group\/home-suggestions button.dream-suggestion-card-3::before {
+  top: 5px !important;
+  width: 124px !important;
+  height: 94px !important;
+  background-image: url("__DREAM_SUGGESTION_STICKER_3__") !important;
+  transform: translateX(-50%) rotate(-2deg) !important;
+}
+
+.dream-home .group\/home-suggestions button.dream-suggestion-card-4::before {
+  top: 7px !important;
+  width: 132px !important;
+  height: 90px !important;
+  border-radius: 14px !important;
+  background-image: url("__DREAM_SUGGESTION_STICKER_4__") !important;
+  transform: translateX(-50%) rotate(2deg) !important;
+}
+
+/* Final polish: stationery details stay gentle once work begins. */
+.dream-signature {
+  min-width: 132px;
+  padding: 7px 12px 7px 15px;
+  border: 1px solid rgba(94,82,64,.15);
+  border-radius: 7px;
+  background:
+    linear-gradient(90deg, rgba(255,250,240,.92), rgba(246,225,177,.68));
+  box-shadow: 0 5px 12px rgba(83,70,49,.08), inset 0 0 0 1px rgba(255,255,255,.46);
+  font-size: 12px;
+  text-align: center;
+}
+
+.dream-signature::before {
+  content: "●";
+  position: absolute;
+  left: 7px;
+  color: #d9a441;
+  font-size: 9px;
+}
+
+/* Keep the workspace clear; the home polaroid already carries the playful cue. */
+.dream-ribbon {
+  display: none !important;
+}
+
+.dream-home .dream-suggestion-card {
+  min-height: 156px !important;
+  padding-bottom: 13px !important;
+}
+
+.dream-home .dream-suggestion-card > span:last-child::after {
+  display: block;
+  margin-top: 5px;
+  color: #887965;
+  font-size: 11px;
+  font-weight: 550;
+  line-height: 1.2;
+}
+
+.dream-home .dream-suggestion-card-1 > span:last-child::after { content: "先看看代码在忙什么"; }
+.dream-home .dream-suggestion-card-2 > span:last-child::after { content: "今天也要造点东西"; }
+.dream-home .dream-suggestion-card-3 > span:last-child::after { content: "让我瞅瞅哪里不对"; }
+.dream-home .dream-suggestion-card-4 > span:last-child::after { content: "坏了，但还能修"; }
+
+html.codex-dream-skin .composer-surface-chrome.dream-composer-note {
+  position: relative;
+  border-color: rgba(188,143,62,.34) !important;
+  background:
+    linear-gradient(90deg, rgba(230,184,77,.26) 0 4px, transparent 4px),
+    repeating-linear-gradient(0deg, transparent 0 27px, rgba(94,82,64,.055) 28px),
+    linear-gradient(145deg, rgba(255,253,247,.98), rgba(244,234,214,.96)) !important;
+  box-shadow: 0 12px 26px rgba(83,70,49,.11), inset 0 0 0 1px rgba(255,255,255,.75) !important;
+}
+
+html.codex-dream-skin .composer-surface-chrome.dream-composer-note::before {
+  content: "写";
+  width: 27px;
+  height: 27px;
+  top: -11px;
+  left: 16px;
+  border: 1px solid rgba(94,82,64,.14);
+  border-radius: 6px;
+  color: #5d513f;
+  background: #f2cf78;
+  box-shadow: 0 4px 9px rgba(83,70,49,.13);
+}
+
+html.codex-dream-skin .composer-surface-chrome.dream-composer-note:focus-within {
+  border-color: rgba(188,143,62,.55) !important;
+  box-shadow: 0 14px 29px rgba(83,70,49,.15), 0 0 0 3px rgba(230,184,77,.13) !important;
+}
+
+html.codex-dream-skin aside.app-shell-left-panel .dream-sidebar-item {
+  background-image: linear-gradient(90deg, rgba(230,184,77,.09), transparent 36%);
+}
+
+html.codex-dream-skin aside.app-shell-left-panel .dream-sidebar-item::before {
+  opacity: .42 !important;
+  background: linear-gradient(#d9a441, #8bc5a3) !important;
+}
+
+html.codex-dream-skin aside.app-shell-left-panel .dream-sidebar-item:hover::before,
+html.codex-dream-skin aside.app-shell-left-panel .dream-sidebar-item[aria-current="page"]::before {
+  opacity: 1 !important;
+}
+
+html.codex-dream-skin [data-message-author-role].dream-message {
+  position: relative;
+  border-radius: 12px;
+  transition: border-color .16s ease, box-shadow .16s ease, transform .16s ease;
+}
+
+html.codex-dream-skin [data-message-author-role].dream-message-user {
+  border: 1px solid rgba(230,184,77,.30);
+  background:
+    linear-gradient(90deg, rgba(230,184,77,.24) 0 3px, transparent 3px),
+    repeating-linear-gradient(0deg, transparent 0 27px, rgba(94,82,64,.035) 28px),
+    rgba(255,250,240,.75);
+  box-shadow: 0 6px 14px rgba(83,70,49,.06);
+}
+
+html.codex-dream-skin [data-message-author-role].dream-message-assistant {
+  border-left: 3px solid rgba(139,197,163,.72);
+  background: linear-gradient(90deg, rgba(255,255,255,.56), rgba(246,240,227,.46));
+  box-shadow: inset 0 0 0 1px rgba(94,82,64,.07);
+}
+
+html.codex-dream-skin [data-message-author-role].dream-message:hover {
+  border-color: rgba(188,143,62,.38);
+  box-shadow: 0 8px 18px rgba(83,70,49,.08);
+}
+
+html.codex-dream-skin [data-message-author-role].dream-message pre {
+  border: 1px solid rgba(94,82,64,.18) !important;
+  border-radius: 10px !important;
+  background:
+    linear-gradient(90deg, rgba(94,82,64,.05) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255,253,247,.95), rgba(238,230,213,.92)) !important;
+  background-size: 22px 22px, auto !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.78);
+}
+
+html.codex-dream-skin .dream-thinking-state {
+  color: transparent !important;
+  font-size: 0 !important;
+}
+
+html.codex-dream-skin .dream-thinking-state::before {
+  content: attr(data-dream-thinking);
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 11px;
+  border: 1px dashed rgba(94,82,64,.24);
+  border-radius: 7px;
+  color: #776d60;
+  background: rgba(255,250,240,.74);
+  font: 700 12px/1.1 "Microsoft YaHei UI", sans-serif;
+}
+
+#codex-dream-thinking-pill {
+  position: fixed;
+  z-index: 2147483000;
+  min-height: 20px;
+  display: inline-flex;
+  align-items: center;
+  max-width: min(260px, calc(100vw - 36px));
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  pointer-events: none;
+  color: #887965;
+  background: transparent;
+  box-shadow: none;
+  font: 650 11px/1.1 "Microsoft YaHei UI", sans-serif;
+  text-shadow: 0 1px rgba(255,255,255,.92);
+  transition: opacity .18s ease, transform .18s ease;
+}
+
+#codex-dream-thinking-pill::before {
+  content: "●";
+  margin-right: 5px;
+  color: #d9a441;
+  font-size: 7px;
+}
+
+#codex-dream-thinking-pill.dream-thinking-command {
+  min-height: 26px;
+  padding: 0 11px;
+  box-sizing: border-box;
+  border: 1px solid rgba(94,82,64,.12);
+  border-radius: 6px;
+  color: #776d60;
+  background: linear-gradient(90deg, rgba(255,250,240,.98), rgba(247,239,222,.96));
+  box-shadow: 0 2px 8px rgba(83,70,49,.05);
+}
+
+html.codex-dream-skin button.dream-running-command {
+  position: relative;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 26px !important;
+  min-height: 26px !important;
+  max-height: 26px !important;
+  overflow: hidden;
+  color: transparent !important;
+}
+
+html.codex-dream-skin button.dream-running-command * {
+  visibility: hidden !important;
+}
+
+html.codex-dream-skin button.dream-running-command::after {
+  content: "●  " attr(data-dream-thinking);
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0 10px;
+  box-sizing: border-box;
+  border: 1px solid rgba(94,82,64,.12);
+  border-radius: 6px;
+  color: #776d60;
+  background: linear-gradient(90deg, rgba(255,250,240,.98), rgba(247,239,222,.96));
+  box-shadow: 0 2px 8px rgba(83,70,49,.05);
+  font: 650 11px/1.1 "Microsoft YaHei UI", sans-serif;
+  text-shadow: 0 1px rgba(255,255,255,.92);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+}
+
+html.codex-dream-skin .dream-thinking-state,
+html.codex-dream-skin .dream-thinking-state::before {
+  color: inherit !important;
+  font-size: inherit !important;
+}
+
+html.codex-dream-skin .dream-thinking-state::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* Keep the rotating work status visible in both home and conversation headers. */
+#codex-dream-skin-chrome .dream-signature {
+  display: block !important;
+  right: 150px;
+  top: 7px;
+  max-width: min(238px, calc(100% - 310px));
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#codex-dream-skin-chrome .dream-signature.dream-signature-thinking {
+  max-width: min(310px, calc(100% - 310px));
+  color: #776d60;
+  background: linear-gradient(90deg, rgba(255,250,240,.96), rgba(245,227,185,.82));
+}
+
+.dream-thinking-header {
+  position: absolute;
+  top: 8px;
+  right: 412px;
+  width: min(260px, calc(100% - 570px));
+  height: 28px;
+  display: none;
+  align-items: center;
+  overflow: hidden;
+  color: #887965;
+  font: 650 11px/1.1 "Microsoft YaHei UI", sans-serif;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-shadow: 0 1px rgba(255,255,255,.92);
+}
+
+.dream-thinking-header.dream-thinking-active {
+  display: flex;
+}
+
+.dream-thinking-header::before {
+  content: "●";
+  margin-right: 6px;
+  color: #d9a441;
+  font-size: 7px;
+}
+
+@media (max-width: 1120px) {
+  .dream-thinking-header {
+    display: none !important;
+  }
+}
+
+@media (max-width: 900px) {
+  #codex-dream-skin-chrome .dream-signature {
+    display: none !important;
+  }
+}
+
+html.codex-dream-skin ::selection {
+  color: #3d3429;
+  background: rgba(230,184,77,.42);
+}
+
+html.codex-dream-skin * {
+  scrollbar-color: rgba(174,145,94,.62) rgba(255,250,240,.48);
+}
+
+html.codex-dream-skin ::-webkit-scrollbar { width: 10px; height: 10px; }
+html.codex-dream-skin ::-webkit-scrollbar-track { background: rgba(255,250,240,.48); }
+html.codex-dream-skin ::-webkit-scrollbar-thumb {
+  border: 3px solid rgba(255,250,240,.72);
+  border-radius: 99px;
+  background: linear-gradient(#e8c56b, #a89068);
+}
+html.codex-dream-skin ::-webkit-scrollbar-thumb:hover { background: linear-gradient(#d9a441, #887965); }
+
+@media (max-width: 900px) {
+  .dream-home .dream-suggestion-card { min-height: 146px !important; }
+  .dream-home .dream-suggestion-card > span:last-child::after { font-size: 10px; }
+}
+
+/* Character-linked details: small enough to keep the work surface quiet. */
+@keyframes dream-sticker-bob {
+  0%, 100% { transform: translateY(0) rotate(-4deg); }
+  50% { transform: translateY(-2px) rotate(2deg); }
+}
+
+#codex-dream-skin-chrome .dream-signature[data-dream-character] {
+  padding-right: 35px;
+}
+
+#codex-dream-skin-chrome .dream-signature[data-dream-character]::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 7px;
+  width: 24px;
+  height: 24px;
+  border: 1px solid rgba(94,82,64,.12);
+  border-radius: 50%;
+  background-color: #fffaf0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: 0 2px 5px rgba(83,70,49,.10);
+  transform: translateY(-50%);
+}
+
+#codex-dream-skin-chrome .dream-signature[data-dream-character="dashu"]::after {
+  background-image: url("__DREAM_AVATAR_DASHU__");
+}
+
+#codex-dream-skin-chrome .dream-signature[data-dream-character="meiji"]::after {
+  background-image: url("__DREAM_AVATAR_MEIJI__");
+}
+
+#codex-dream-skin-chrome .dream-signature[data-dream-character="wangcai"]::after {
+  background-image: url("__DREAM_AVATAR_WANGCAI__");
+}
+
+html.codex-dream-skin button.dream-running-command[data-dream-character="dashu"]::after,
+html.codex-dream-skin button.dream-running-command[data-dream-character="meiji"]::after,
+html.codex-dream-skin button.dream-running-command[data-dream-character="wangcai"]::after {
+  content: attr(data-dream-thinking);
+  padding-left: 40px;
+  background-position: 10px center, 0 0;
+  background-repeat: no-repeat, no-repeat;
+  background-size: 22px 22px, auto;
+}
+
+html.codex-dream-skin button.dream-running-command[data-dream-character="dashu"]::after {
+  background-image: url("__DREAM_AVATAR_DASHU__"), linear-gradient(90deg, rgba(255,250,240,.98), rgba(247,239,222,.96));
+}
+
+html.codex-dream-skin button.dream-running-command[data-dream-character="meiji"]::after {
+  background-image: url("__DREAM_AVATAR_MEIJI__"), linear-gradient(90deg, rgba(255,250,240,.98), rgba(247,239,222,.96));
+}
+
+html.codex-dream-skin button.dream-running-command[data-dream-character="wangcai"]::after {
+  background-image: url("__DREAM_AVATAR_WANGCAI__"), linear-gradient(90deg, rgba(255,250,240,.98), rgba(247,239,222,.96));
+}
+
+html.codex-dream-skin button.dream-running-command[data-dream-complete]::before {
+  content: "完成啦";
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  right: 7px;
+  padding: 2px 5px;
+  border: 1px solid rgba(139,197,163,.50);
+  border-radius: 5px;
+  color: #557f68;
+  background: rgba(238,249,238,.96);
+  box-shadow: 0 1px 3px rgba(83,70,49,.08);
+  font: 700 10px/1 "Microsoft YaHei UI", sans-serif;
+  letter-spacing: 0;
+  transform: translateY(-50%) rotate(-3deg);
+}
+
+html.codex-dream-skin button.dream-running-command[data-dream-complete]::after {
+  padding-right: 54px;
+}
+
+html.codex-dream-skin .composer-surface-chrome.dream-composer-empty::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: -12px;
+  right: 18px;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(94,82,64,.13);
+  border-radius: 8px;
+  background-color: #fffaf0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: 0 4px 9px rgba(83,70,49,.10);
+  opacity: .42;
+  pointer-events: none;
+  animation: dream-sticker-bob 2.8s ease-in-out infinite;
+}
+
+html.codex-dream-skin .composer-surface-chrome.dream-composer-empty[data-dream-character="dashu"]::after {
+  background-image: url("__DREAM_AVATAR_DASHU__");
+}
+
+html.codex-dream-skin .composer-surface-chrome.dream-composer-empty[data-dream-character="meiji"]::after {
+  background-image: url("__DREAM_AVATAR_MEIJI__");
+}
+
+html.codex-dream-skin .composer-surface-chrome.dream-composer-empty[data-dream-character="wangcai"]::after {
+  background-image: url("__DREAM_AVATAR_WANGCAI__");
+}
+
+html.codex-dream-skin .composer-surface-chrome.dream-composer-empty:focus-within::after {
+  opacity: .68;
+}
+
+html.codex-dream-skin aside.app-shell-left-panel .dream-sidebar-current {
+  overflow: visible;
+  border: 1px solid rgba(188,143,62,.22);
+  background:
+    linear-gradient(90deg, rgba(246,225,177,.48), rgba(255,250,240,.20)) !important;
+  box-shadow: 0 3px 8px rgba(83,70,49,.06);
+}
+
+html.codex-dream-skin aside.app-shell-left-panel .dream-sidebar-current::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background: url("__DREAM_AVATAR_WANGCAI__") center / cover no-repeat;
+  box-shadow: 0 1px 4px rgba(83,70,49,.10);
+  transform: translateY(-50%);
+}
+
+html.codex-dream-skin [role="menu"],
+html.codex-dream-skin [role="listbox"] {
+  border-color: rgba(94,82,64,.16) !important;
+  background: rgba(255,252,246,.98) !important;
+  box-shadow: 0 12px 28px rgba(83,70,49,.14) !important;
+}
+
+/* The active sentence chooses a fresh expression from its own character pool. */
+#codex-dream-skin-chrome .dream-signature[data-dream-meme]::after {
+  background-image: var(--dream-meme) !important;
+}
+
+html.codex-dream-skin button.dream-running-command[data-dream-meme]::after {
+  content: attr(data-dream-thinking);
+  padding-left: 40px;
+  background-image: var(--dream-meme), linear-gradient(90deg, rgba(255,250,240,.98), rgba(247,239,222,.96)) !important;
+  background-position: 10px center, 0 0;
+  background-repeat: no-repeat, no-repeat;
+  background-size: 22px 22px, auto;
+}
+
+html.codex-dream-skin .composer-surface-chrome.dream-composer-empty[data-dream-meme]::after {
+  background-image: var(--dream-meme) !important;
+}
+
+/*
+ * Codex 26.721+ writes dark-theme foreground tokens directly on <html>.
+ * Keep the mouse theme readable without changing light-on-accent controls.
+ */
+:root.codex-dream-skin {
+  /* Codex 26.901 uses these surface tokens outside settings as well. */
+  --color-surface: #fbf7ef !important;
+  --color-surface-secondary: #f8f2e7 !important;
+  --color-surface-tertiary: #f1e8d8 !important;
+  --wb-surface-primary: #fbf7ef !important;
+  --wb-surface-secondary: #f8f2e7 !important;
+  --color-background-surface-under: #f8f2e7 !important;
+  --color-background-editor-opaque: #fffaf2 !important;
+  --color-background-elevated-secondary: rgba(255, 251, 243, .92) !important;
+
+  --vscode-foreground: #3a3328 !important;
+  --vscode-sideBar-foreground: #4b4439 !important;
+  --vscode-editor-foreground: #3a3328 !important;
+  --vscode-icon-foreground: #4b4439 !important;
+  --vscode-menubar-selectionForeground: #3a3328 !important;
+  --vscode-textLink-foreground: #8a641d !important;
+  --vscode-textLink-activeForeground: #b47b1f !important;
+
+  --color-text-foreground: #3a3328 !important;
+  --color-text-foreground-secondary: rgba(74, 67, 56, .78) !important;
+  --color-text-foreground-tertiary: rgba(119, 109, 96, .78) !important;
+  --color-text-accent: #9a6b16 !important;
+
+  --color-icon-primary: #4b4439 !important;
+  --color-icon-secondary: rgba(74, 67, 56, .76) !important;
+  --color-icon-tertiary: rgba(119, 109, 96, .74) !important;
+
+  --color-token-foreground: #3a3328 !important;
+  --color-token-text-primary: #3a3328 !important;
+  --color-token-text-secondary: rgba(74, 67, 56, .80) !important;
+  --color-token-text-tertiary: rgba(119, 109, 96, .82) !important;
+  --color-token-description-foreground: rgba(119, 109, 96, .84) !important;
+  --color-token-input-foreground: #3a3328 !important;
+  --color-token-input-placeholder-foreground: rgba(119, 109, 96, .72) !important;
+  --color-token-input-background: rgba(255, 250, 240, .97) !important;
+  --color-token-input-border: rgba(94, 82, 64, .20) !important;
+  --color-token-dropdown-background: #fffaf0 !important;
+  --color-token-menu-background: rgba(255, 252, 246, .98) !important;
+  --color-token-conversation-body: rgba(58, 51, 40, .88) !important;
+  --color-token-conversation-summary-leading: rgba(93, 84, 71, .84) !important;
+  --color-token-conversation-summary-trailing: rgba(119, 109, 96, .72) !important;
+  --color-token-non-assistant-body-descendant: rgba(58, 51, 40, .76) !important;
+  --color-token-badge-foreground: #665d51 !important;
+  --color-token-disabled-foreground: rgba(119, 109, 96, .62) !important;
+  --color-token-application-menu-foreground: #4b4439 !important;
+  --color-foreground-application-menu: #4b4439 !important;
+  --color-background-control: rgba(255, 250, 240, .97) !important;
+  --color-background-control-opaque: #fffaf0 !important;
+  --color-background-elevated-primary: rgba(255, 252, 246, .98) !important;
+  --color-background-elevated-primary-opaque: #fffcf6 !important;
+  --color-background-application-menu: #fffaf0 !important;
+
+  --vscode-input-background: rgba(255, 250, 240, .97) !important;
+  --vscode-input-border: rgba(94, 82, 64, .20) !important;
+  --vscode-dropdown-background: #fffaf0 !important;
+  --vscode-dropdown-listBackground: #fffaf0 !important;
+  --vscode-menu-background: rgba(255, 252, 246, .98) !important;
+  --vscode-input-placeholderForeground: rgba(119, 109, 96, .78) !important;
+}
+
+/* Fallbacks for the new generated class names while their token set is in flux. */
+html.codex-dream-skin main.main-surface [class*="_markdownContent_"],
+html.codex-dream-skin main.main-surface [class*="_markdownText_"],
+html.codex-dream-skin main.main-surface .text-token-foreground,
+html.codex-dream-skin main.main-surface .text-token-text-primary,
+html.codex-dream-skin aside.app-shell-left-panel .text-token-foreground,
+html.codex-dream-skin aside.app-shell-left-panel .text-token-text-primary {
+  color: #3a3328 !important;
+}
+
+/* Codex 26.721 added another wrapper around the composer in some home states. */
+html.codex-dream-skin main.main-surface div:has(> .composer-surface-chrome) {
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+html.codex-dream-skin .ProseMirror p.placeholder,
+html.codex-dream-skin .ProseMirror [data-placeholder] {
+  color: rgba(93, 84, 71, .76) !important;
+}
+
+/* The refreshed home DOM no longer guarantees the old dark hero wrapper. */
+html.codex-dream-skin .dream-home [data-feature="game-source"],
+html.codex-dream-skin .dream-home [data-feature="game-source"]::after,
+html.codex-dream-skin .dream-home [data-feature="game-source"] button {
+  color: #3a3328 !important;
+  text-shadow: none !important;
+}
+
+html.codex-dream-skin main.main-surface > header.app-header-tint {
+  box-shadow: 0 2px 8px rgba(83, 70, 49, .08) !important;
+}
+
+@media (min-width: 1121px) and (max-width: 1400px) {
+  #codex-dream-skin-chrome.dream-home-shell .dream-polaroid {
+    right: clamp(84px, 8vw, 112px);
+  }
+}
+
+/*
+ * The refreshed home page keeps an empty banner slot before its actual
+ * content. The legacy hero layout must not stretch that empty slot to 100%.
+ */
+html.codex-dream-skin .dream-home > div:first-child:has(> .home-banners:empty) {
+  min-height: 0 !important;
+  height: auto !important;
+  padding-top: 0 !important;
+}
+
+/* Restore the four clickable home cards removed from the refreshed Codex UI. */
+html.codex-dream-skin .dream-home #codex-dream-home-suggestions {
+  position: absolute;
+  z-index: 8;
+  top: clamp(270px, 49cqh, 370px);
+  left: 50%;
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  width: min(850px, calc(100% - 72px));
+  margin: 0 !important;
+  transform: translateX(-50%);
+  pointer-events: auto;
+}
+
+html.codex-dream-skin .dream-home #codex-dream-home-suggestions > button.dream-suggestion-card {
+  position: relative !important;
+  width: 100%;
+  min-height: 166px !important;
+  padding: 98px 10px 10px !important;
+  cursor: pointer;
+  user-select: none;
+}
+
+html.codex-dream-skin .dream-home #codex-dream-home-suggestions > button.dream-suggestion-card::before {
+  top: 7px !important;
+  width: 118px !important;
+  height: 84px !important;
+}
+
+html.codex-dream-skin .dream-home #codex-dream-home-suggestions
+  > button.dream-suggestion-card:nth-child(4)::before {
+  top: 1px !important;
+  width: 126px !important;
+  height: 96px !important;
+}
+
+html.codex-dream-skin .dream-home #codex-dream-home-suggestions > button.dream-suggestion-card > span:last-child {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 6px 8px !important;
+  border: 1px solid rgba(94, 82, 64, .12) !important;
+  border-radius: 8px !important;
+  background: rgba(255, 252, 246, .90);
+  font-size: 13px !important;
+  line-height: 1.28 !important;
+}
+
+html.codex-dream-skin .dream-home #codex-dream-home-suggestions > button.dream-suggestion-card > span:last-child::after {
+  content: none !important;
+  display: none !important;
+}
+
+html.codex-dream-skin .dream-home #codex-dream-home-suggestions > button.dream-suggestion-card:focus-visible {
+  outline: 2px solid rgba(180, 123, 31, .72);
+  outline-offset: 3px;
+}
+
+/* Keep the refreshed header light and separate without a heavy dark edge. */
+html.codex-dream-skin main.main-surface > header.app-header-tint {
+  border-bottom: 2px solid #ead49d !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+html.codex-dream-skin .app-shell-main-content-top-fade {
+  background: linear-gradient(180deg, rgba(234, 212, 157, .22), transparent) !important;
+}
+
+html.codex-dream-skin [class*="_MainContentTopFade_"] {
+  background: linear-gradient(180deg, rgba(234, 212, 157, .16), transparent) !important;
+}
+
+/* Put the rotating status sticker below its copy instead of beside it. */
+#codex-dream-skin-chrome .dream-signature[data-dream-character] {
+  min-width: 148px;
+  padding: 7px 12px;
+  overflow: visible;
+}
+
+#codex-dream-skin-chrome .dream-signature[data-dream-character]::after {
+  top: calc(100% + 7px);
+  right: 50%;
+  width: 46px;
+  height: 46px;
+  border-radius: 10px;
+  background-size: contain;
+  box-shadow: 0 5px 12px rgba(83, 70, 49, .13);
+  transform: translateX(50%);
+}
+
+#codex-dream-skin-chrome.dream-home-shell .dream-polaroid {
+  top: 136px;
+}
+
+/* The composer sticker lives above the writing area, leaving text untouched. */
+html.codex-dream-skin .composer-surface-chrome.dream-composer-empty::after {
+  top: -58px;
+  right: 14px;
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  opacity: .78;
+}
+
+html.codex-dream-skin .composer-surface-chrome.dream-composer-empty:focus-within::after {
+  opacity: .90;
+}
+
+/* Avoid Electron rendering the old deep composer shadow as a black frame. */
+html.codex-dream-skin .composer-surface-chrome,
+html.codex-dream-skin .composer-surface-chrome.dream-composer-note,
+html.codex-dream-skin .composer-surface-chrome.dream-composer-note:focus-within {
+  border: 1px solid rgba(188, 143, 62, .30) !important;
+  outline: 0 !important;
+  box-shadow:
+    0 2px 6px rgba(83, 70, 49, .07),
+    inset 0 0 0 1px rgba(255, 255, 255, .72) !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+}
+
+/* Conversation pages add a separate dark-theme fade behind the composer. */
+html.codex-dream-skin .thread-scroll-container
+  .bg-gradient-to-t.from-token-main-surface-primary.via-token-main-surface-primary {
+  background:
+    linear-gradient(
+      to top,
+      rgba(247, 241, 230, .99) 0%,
+      rgba(247, 241, 230, .96) 52%,
+      rgba(247, 241, 230, .72) 76%,
+      transparent 100%
+    ) !important;
+}
+
+html.codex-dream-skin .thread-scroll-container
+  .bg-gradient-to-t.from-surface.via-surface {
+  background:
+    linear-gradient(
+      to top,
+      rgba(247, 241, 230, .99) 0%,
+      rgba(247, 241, 230, .96) 52%,
+      rgba(247, 241, 230, .72) 76%,
+      transparent 100%
+    ) !important;
+}
+
+html.codex-dream-skin .thread-scroll-container
+  .bg-gradient-to-t.from-token-main-surface-primary.to-transparent {
+  background:
+    linear-gradient(
+      to top,
+      rgba(247, 241, 230, .96) 0%,
+      rgba(247, 241, 230, .58) 52%,
+      transparent 100%
+    ) !important;
+}
+
+/* Turn the restored home shortcuts into small, deliberate task entry flows. */
+html.codex-dream-skin .dream-home #codex-dream-home-suggestions[data-dream-view="panel"] {
+  display: block !important;
+}
+
+html.codex-dream-skin .dream-home .dream-task-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 128px;
+  gap: 10px 12px;
+  min-height: 222px;
+  padding: 13px 14px 14px;
+  overflow: hidden;
+  border: 1px solid rgba(188, 143, 62, .28);
+  border-radius: 8px;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 27px, rgba(94, 82, 64, .035) 28px),
+    linear-gradient(145deg, rgba(255, 252, 244, .99), rgba(246, 235, 213, .98));
+  box-shadow:
+    0 12px 28px rgba(83, 70, 49, .12),
+    inset 0 0 0 1px rgba(255, 255, 255, .76);
+  color: #493f32;
+}
+
+html.codex-dream-skin .dream-home .dream-task-panel > header {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  height: 48px;
+}
+
+html.codex-dream-skin .dream-home .dream-task-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 30px;
+  width: 30px;
+  height: 30px;
+  margin-right: 8px;
+  padding: 0;
+  border: 1px solid rgba(94, 82, 64, .14);
+  border-radius: 50%;
+  background: rgba(255, 252, 246, .84);
+  color: #665744;
+  font: 700 25px/1 "Microsoft YaHei UI", sans-serif;
+  cursor: pointer;
+}
+
+html.codex-dream-skin .dream-home .dream-task-back:hover {
+  border-color: rgba(188, 143, 62, .40);
+  background: #fffaf0;
+}
+
+html.codex-dream-skin .dream-home .dream-task-sticker {
+  flex: 0 0 74px;
+  width: 74px;
+  height: 48px;
+  margin-right: 10px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+html.codex-dream-skin .dream-home .dream-task-panel-1 .dream-task-sticker {
+  background-image: url("__DREAM_SUGGESTION_STICKER_1__");
+}
+
+html.codex-dream-skin .dream-home .dream-task-panel-2 .dream-task-sticker {
+  background-image: url("__DREAM_SUGGESTION_STICKER_2__");
+}
+
+html.codex-dream-skin .dream-home .dream-task-panel-3 .dream-task-sticker {
+  background-image: url("__DREAM_SUGGESTION_STICKER_3__");
+}
+
+html.codex-dream-skin .dream-home .dream-task-panel-4 .dream-task-sticker {
+  background-image: url("__DREAM_SUGGESTION_STICKER_4__");
+}
+
+html.codex-dream-skin .dream-home .dream-task-panel header > div {
+  min-width: 0;
+}
+
+html.codex-dream-skin .dream-home .dream-task-panel header small {
+  display: block;
+  margin-bottom: 2px;
+  color: #9a825e;
+  font-size: 10px;
+  font-weight: 650;
+}
+
+html.codex-dream-skin .dream-home .dream-task-panel header h2 {
+  margin: 0;
+  overflow: hidden;
+  color: #40372d;
+  font-size: 17px;
+  font-weight: 760;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+html.codex-dream-skin .dream-home .dream-task-options {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 7px;
+}
+
+html.codex-dream-skin .dream-home .dream-task-options button {
+  min-width: 0;
+  min-height: 34px;
+  padding: 6px 9px;
+  border: 1px solid rgba(94, 82, 64, .13);
+  border-radius: 7px;
+  background: rgba(255, 253, 248, .76);
+  color: #6b5b47;
+  font-size: 12px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+html.codex-dream-skin .dream-home .dream-task-options button:hover {
+  background: rgba(255, 250, 237, .98);
+}
+
+html.codex-dream-skin .dream-home .dream-task-options button.is-selected {
+  border-color: rgba(190, 137, 38, .48);
+  background: #f4ce72;
+  color: #4c3b20;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .48);
+}
+
+html.codex-dream-skin .dream-home .dream-task-prompt {
+  grid-column: 1;
+  width: 100%;
+  height: 72px;
+  min-height: 72px;
+  max-height: 72px;
+  padding: 9px 10px;
+  resize: none;
+  border: 1px solid rgba(94, 82, 64, .15);
+  border-radius: 7px;
+  outline: none;
+  background: rgba(255, 253, 248, .88);
+  color: #493f32;
+  font: 12px/1.55 "Microsoft YaHei UI", sans-serif;
+}
+
+html.codex-dream-skin .dream-home .dream-task-prompt:focus {
+  border-color: rgba(190, 137, 38, .55);
+  box-shadow: 0 0 0 2px rgba(232, 190, 96, .16);
+}
+
+html.codex-dream-skin .dream-home .dream-task-start {
+  grid-column: 2;
+  align-self: stretch;
+  min-height: 72px;
+  padding: 10px;
+  border: 1px solid rgba(166, 112, 26, .26);
+  border-radius: 7px;
+  background: #e9b94f;
+  color: #463518;
+  font-size: 13px;
+  font-weight: 760;
+  cursor: pointer;
+  box-shadow:
+    0 5px 10px rgba(151, 103, 24, .13),
+    inset 0 1px 0 rgba(255, 255, 255, .55);
+}
+
+html.codex-dream-skin .dream-home .dream-task-start:hover {
+  background: #f0c45f;
+}
+
+html.codex-dream-skin .dream-home .dream-task-back:focus-visible,
+html.codex-dream-skin .dream-home .dream-task-options button:focus-visible,
+html.codex-dream-skin .dream-home .dream-task-start:focus-visible {
+  outline: 2px solid rgba(180, 123, 31, .68);
+  outline-offset: 2px;
+}
+
+@media (max-width: 860px) {
+  html.codex-dream-skin .dream-home .dream-task-panel {
+    grid-template-columns: minmax(0, 1fr) 110px;
+  }
+
+  html.codex-dream-skin .dream-home .dream-task-sticker {
+    flex-basis: 56px;
+    width: 56px;
+  }
+}
+
+/* Settings uses its own dark surface tokens in Codex 26.721+. */
+:root.codex-dream-skin.dream-settings-page {
+  /* Codex 26.820+ settings panels use the new surface token family. */
+  --color-surface: #fbf7ef !important;
+  --color-surface-secondary: #f8f2e7 !important;
+  --color-surface-tertiary: #f1e8d8 !important;
+  --wb-surface-primary: #fbf7ef !important;
+  --wb-surface-secondary: #f8f2e7 !important;
+  --color-background-surface-under: #f8f2e7 !important;
+  --color-background-editor-opaque: #fffaf2 !important;
+  --color-background-elevated-secondary: rgba(255, 251, 243, .92) !important;
+
+  --color-token-bg-primary: #f8f2e7 !important;
+  --color-token-main-surface-primary: #fbf7ef !important;
+  --color-token-side-bar-background: #f6eedf !important;
+  --color-token-bg-secondary: rgba(246, 237, 220, .96) !important;
+  --color-token-bg-tertiary: rgba(239, 226, 201, .88) !important;
+  --color-token-bg-fog: rgba(116, 91, 52, .055) !important;
+
+  --color-token-foreground: #3b3328 !important;
+  --color-token-text-primary: #3b3328 !important;
+  --color-token-text-secondary: rgba(83, 73, 60, .84) !important;
+  --color-token-text-tertiary: rgba(111, 96, 77, .82) !important;
+  --color-token-description-foreground: rgba(102, 88, 70, .84) !important;
+  --color-token-disabled-foreground: rgba(117, 100, 78, .72) !important;
+
+  --color-token-border: rgba(102, 82, 54, .16) !important;
+  --color-token-border-default: rgba(102, 82, 54, .16) !important;
+  --color-token-border-light: rgba(102, 82, 54, .10) !important;
+  --color-token-border-heavy: rgba(102, 82, 54, .24) !important;
+  --color-token-button-border: rgba(102, 82, 54, .18) !important;
+  --color-token-menu-border: rgba(102, 82, 54, .16) !important;
+  --color-token-checkbox-border: rgba(102, 82, 54, .24) !important;
+  --color-token-radio-inactive-border: rgba(102, 82, 54, .28) !important;
+
+  --color-token-list-hover-background: rgba(190, 143, 62, .11) !important;
+  --color-token-list-active-selection-background: rgba(190, 143, 62, .16) !important;
+  --color-token-toolbar-hover-background: rgba(190, 143, 62, .10) !important;
+  --color-token-button-secondary-hover-background: rgba(190, 143, 62, .12) !important;
+  --color-token-input-validation-warning-background: #fff0d2 !important;
+  --color-token-input-validation-warning-border: rgba(198, 123, 34, .38) !important;
+  --color-token-scrollbar-slider-background: rgba(111, 91, 64, .18) !important;
+  --color-token-scrollbar-slider-hover-background: rgba(111, 91, 64, .28) !important;
+  --color-token-scrollbar-slider-active-background: rgba(111, 91, 64, .36) !important;
+}
+
+html.codex-dream-skin.dream-settings-page .dream-sparkles {
+  display: none !important;
+}
+
+html.codex-dream-skin.dream-settings-page main.main-surface {
+  background: #fbf7ef !important;
+  color: #3b3328 !important;
+}
+
+html.codex-dream-skin.dream-settings-page
+  main.main-surface [class*="electron:bg-surface"] {
+  background: #fbf7ef !important;
+  color: #3b3328 !important;
+}
+
+html.codex-dream-skin.dream-settings-page
+  main.main-surface [class*="rounded-2xl"][class*="border-token-border"] {
+  border-color: rgba(102, 82, 54, .16) !important;
+  background: rgba(255, 251, 243, .92) !important;
+}
+
+html.codex-dream-skin.dream-settings-page
+  main.main-surface [class*="rounded-2xl"][class*="border-default"] {
+  border-color: rgba(102, 82, 54, .16) !important;
+  background: rgba(255, 251, 243, .94) !important;
+}
+
+html.codex-dream-skin.dream-settings-page
+  main.main-surface aside.bg-token-main-surface-primary {
+  border-color: rgba(198, 123, 34, .28) !important;
+  background: #fff7e6 !important;
+}
+
+html.codex-dream-skin.dream-settings-page
+  main.main-surface :is(input, textarea, select) {
+  border-color: rgba(102, 82, 54, .20) !important;
+  background: rgba(255, 253, 248, .98) !important;
+  color: #3b3328 !important;
+}
+
+html.codex-dream-skin.dream-settings-page
+  main.main-surface :is(input, textarea)::placeholder {
+  color: rgba(111, 96, 77, .72) !important;
+}
+
+html.codex-dream-skin.dream-settings-page
+  main.main-surface button:disabled:not([class*="text-token-charts"]) {
+  color: rgba(105, 90, 71, .72) !important;
+  opacity: .64 !important;
+}
+
+/* Theme controls: density, focus mode, and compatibility repair. */
+#codex-dream-skin-chrome .dream-signature {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 196px;
+  max-width: min(300px, calc(100% - 310px));
+  padding: 7px 11px 7px 16px !important;
+  appearance: none;
+  cursor: pointer;
+  pointer-events: auto;
+  transform: none;
+}
+
+#codex-dream-skin-chrome .dream-status-copy {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#codex-dream-skin-chrome .dream-density-label {
+  flex: 0 0 auto;
+  padding-left: 8px;
+  border-left: 1px solid rgba(94, 82, 64, .16);
+  color: #9a6b16;
+  font-size: 10px;
+  font-weight: 750;
+}
+
+#codex-dream-skin-chrome .dream-signature:focus-visible,
+#codex-dream-skin-chrome .dream-repair-button:focus-visible {
+  outline: 2px solid rgba(180, 123, 31, .72);
+  outline-offset: 2px;
+}
+
+#codex-dream-skin-chrome .dream-repair-button {
+  position: absolute;
+  top: 8px;
+  right: 462px;
+  min-height: 27px;
+  padding: 4px 10px;
+  border: 1px solid rgba(190, 91, 67, .28);
+  border-radius: 7px;
+  background: rgba(255, 244, 232, .97);
+  color: #a34f3d;
+  box-shadow: 0 5px 12px rgba(83, 70, 49, .10);
+  cursor: pointer;
+  pointer-events: auto;
+  font: 700 11px/1.2 "Microsoft YaHei UI", sans-serif;
+}
+
+#codex-dream-skin-chrome .dream-repair-button[hidden] {
+  display: none !important;
+}
+
+:root.codex-dream-skin.dream-density-quiet .dream-sparkles,
+:root.codex-dream-skin.dream-density-quiet .dream-polaroid,
+:root.codex-dream-skin.dream-density-quiet #codex-dream-skin-chrome .dream-signature::after,
+:root.codex-dream-skin.dream-density-quiet .composer-surface-chrome.dream-composer-empty::after {
+  display: none !important;
+}
+
+:root.codex-dream-skin.dream-density-quiet .dream-suggestion-card {
+  box-shadow: 0 5px 14px rgba(83, 70, 49, .07), inset 0 0 0 1px rgba(255,255,255,.70) !important;
+}
+
+:root.codex-dream-skin.dream-density-lively .dream-sparkles {
+  opacity: .82;
+}
+
+:root.codex-dream-skin.dream-density-lively #codex-dream-skin-chrome .dream-signature[data-dream-character]::after {
+  width: 52px;
+  height: 52px;
+}
+
+:root.codex-dream-skin.dream-density-lively .dream-suggestion-card {
+  box-shadow: 0 13px 25px rgba(83,70,49,.14), inset 0 0 0 1px rgba(255,255,255,.78) !important;
+}
+
+:root.codex-dream-skin.dream-focus-mode .dream-sparkles,
+:root.codex-dream-skin.dream-focus-mode .dream-polaroid {
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+:root.codex-dream-skin.dream-focus-mode #codex-dream-skin-chrome .dream-signature::after,
+:root.codex-dream-skin.dream-focus-mode .composer-surface-chrome.dream-composer-empty::after {
+  opacity: .18 !important;
+}
+
+@media (max-width: 1120px) {
+  #codex-dream-skin-chrome .dream-repair-button { right: 342px; }
+}

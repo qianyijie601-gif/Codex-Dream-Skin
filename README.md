@@ -105,6 +105,7 @@
 
 - Mac：[`macos/README.md`](./macos/README.md)
 - Windows：[`windows/SKILL.md`](./windows/SKILL.md)
+- 美叽、大鼠、旺财主题：[`docs/meiji-dashu-wangcai-theme.md`](./docs/meiji-dashu-wangcai-theme.md)
 - 路径对照：[`docs/platforms.md`](./docs/platforms.md)
 - 项目记录：[`docs/PROJECT.md`](./docs/PROJECT.md)
 

@@ -9,9 +9,13 @@ const windowsRoot = path.resolve(here, "..");
 const template = await fs.readFile(path.join(windowsRoot, "assets", "renderer-inject.js"), "utf8");
 const payload = template
   .replace("__DREAM_CSS_JSON__", JSON.stringify(".fixture { color: blue; }"))
-  .replace("__DREAM_ART_JSON__", JSON.stringify("data:image/png;base64,AA=="));
+  .replace("__DREAM_ART_JSON__", JSON.stringify("data:image/png;base64,AA=="))
+  .replaceAll("__DREAM_MEMES_JSON__", JSON.stringify({}));
 
-function createFixture({ shellPresent, staleSkin = false }) {
+function createFixture(options) {
+  const { shellPresent, staleSkin = false, settingsPresent = false } = options;
+  const sidebarFollowsShell = !Object.hasOwn(options, "sidebarPresent");
+  let hasSidebar = options.sidebarPresent ?? shellPresent;
   const nodes = new Map();
   const rootClasses = new Set(staleSkin ? ["codex-dream-skin"] : []);
   const rootStyles = new Map(staleSkin ? [["--dream-art", "url(\"blob:stale\")"]] : []);
@@ -21,6 +25,7 @@ function createFixture({ shellPresent, staleSkin = false }) {
   const makeClassList = (classes = new Set()) => ({
     add(value) { classes.add(value); },
     remove(value) { classes.delete(value); },
+    contains(value) { return classes.has(value); },
     toggle(value, enabled) {
       if (enabled) classes.add(value);
       else classes.delete(value);
@@ -45,7 +50,14 @@ function createFixture({ shellPresent, staleSkin = false }) {
     },
   };
   const shellMain = {
+    dataset: {},
     classList: makeClassList(),
+    querySelectorAll(selector) {
+      if (selector === "input" && settingsPresent) {
+        return [{ placeholder: "搜索设置", getAttribute() { return null; } }];
+      }
+      return [];
+    },
     getBoundingClientRect() {
       return { left: 290, top: 36, width: 990, height: 784 };
     },
@@ -81,10 +93,13 @@ function createFixture({ shellPresent, staleSkin = false }) {
     getElementById(id) { return nodes.get(id) ?? null; },
     querySelector(selector) {
       if (selector === "main.main-surface") return hasShell ? shellMain : null;
-      if (selector === "aside.app-shell-left-panel") return hasShell ? {} : null;
+      if (selector === "aside.app-shell-left-panel") return hasSidebar ? {} : null;
       return null;
     },
     querySelectorAll(selector) {
+      if (selector === 'button, [role="button"], a, [role="link"]' && settingsPresent) {
+        return [{ textContent: "", getAttribute(name) { return name === "aria-label" ? "返回应用" : null; } }];
+      }
       if (!staleSkin) return [];
       if (selector === ".dream-home") return [staleHome];
       if (selector === ".dream-home-shell") return [staleShell];
@@ -117,7 +132,10 @@ function createFixture({ shellPresent, staleSkin = false }) {
     rootClasses,
     rootStyles,
     revokedUrls,
-    setShellPresent(value) { hasShell = value; },
+    setShellPresent(value) {
+      hasShell = value;
+      if (sidebarFollowsShell) hasSidebar = value;
+    },
   };
 }
 
@@ -148,4 +166,10 @@ assert.equal(auxiliary.rootClasses.has("codex-dream-skin"), true);
 assert.equal(auxiliary.nodes.has("codex-dream-skin-style"), true);
 assert.equal(auxiliary.nodes.has("codex-dream-skin-chrome"), true);
 
-console.log("PASS: renderer themes the Codex shell and preserves transparent auxiliary windows.");
+const settings = createFixture({ shellPresent: true, sidebarPresent: false, settingsPresent: true });
+vm.runInNewContext(payload, settings.context);
+assert.equal(settings.rootClasses.has("dream-settings-page"), true);
+settings.context.window.__CODEX_DREAM_SKIN_STATE__.cleanup();
+assert.equal(settings.rootClasses.has("dream-settings-page"), false);
+
+console.log("PASS: renderer themes the Codex shell, detects settings, and preserves transparent auxiliary windows.");

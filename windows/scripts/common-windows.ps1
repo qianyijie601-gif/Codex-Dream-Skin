@@ -110,6 +110,7 @@ function ConvertTo-DreamSkinCodexInstall {
     Version = "$($Package.Version)"
     PackageFullName = "$($Package.PackageFullName)"
     PackageFamilyName = "$($Package.PackageFamilyName)"
+    AppUserModelId = "$($Package.PackageFamilyName)!App"
     SignatureKind = "$($Package.SignatureKind)"
   }
 }
@@ -171,6 +172,7 @@ function Resolve-DreamSkinCodexInstallFromState {
       Version = $install.Version
       PackageFullName = $install.PackageFullName
       PackageFamilyName = $install.PackageFamilyName
+      AppUserModelId = $install.AppUserModelId
       SignatureKind = $install.SignatureKind
       FromState = $true
       RegisteredPackageVerified = $true
@@ -443,8 +445,12 @@ function Stop-DreamSkinRecordedInjector {
   }
 
   Stop-Process -Id $processId -Force -ErrorAction Stop
-  try { Wait-Process -Id $processId -Timeout 5 -ErrorAction Stop } catch {}
-  if (Get-Process -Id $processId -ErrorAction SilentlyContinue) {
+  $stopDeadline = (Get-Date).AddSeconds(15)
+  while ((Get-Date) -lt $stopDeadline -and
+    (Get-CimInstance Win32_Process -Filter "ProcessId = $processId" -ErrorAction SilentlyContinue)) {
+    Start-Sleep -Milliseconds 150
+  }
+  if (Get-CimInstance Win32_Process -Filter "ProcessId = $processId" -ErrorAction SilentlyContinue) {
     throw "The recorded Dream Skin injector did not stop: PID $processId"
   }
   return $true
@@ -485,6 +491,99 @@ function Stop-DreamSkinCodex {
   }
   Start-Sleep -Milliseconds 500
   if ((Get-DreamSkinCodexProcesses -Codex $Codex).Count -gt 0) { throw 'Codex could not be stopped safely.' }
+}
+
+function Add-DreamSkinAppActivationType {
+  if ('CodexDreamSkin.AppActivationManager' -as [type]) { return }
+  Add-Type -TypeDefinition @'
+using System;
+using System.Runtime.InteropServices;
+
+namespace CodexDreamSkin {
+  [Flags]
+  public enum ActivateOptions {
+    None = 0,
+    DesignMode = 1,
+    NoErrorUI = 2,
+    NoSplashScreen = 4
+  }
+
+  [ComImport]
+  [Guid("2e941141-7f97-4756-ba1d-9decde894a3d")]
+  [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+  public interface IApplicationActivationManager {
+    int ActivateApplication(
+      [In] string appUserModelId,
+      [In] string arguments,
+      [In] ActivateOptions options,
+      out uint processId
+    );
+
+    int ActivateForFile(
+      [In] string appUserModelId,
+      [In] IntPtr itemArray,
+      [In] string verb,
+      out uint processId
+    );
+
+    int ActivateForProtocol(
+      [In] string appUserModelId,
+      [In] IntPtr itemArray,
+      out uint processId
+    );
+  }
+
+  [ComImport]
+  [Guid("45BA127D-10A8-46EA-8AB7-56EA9078943C")]
+  public class ApplicationActivationManager {
+  }
+
+  public static class AppActivationManager {
+    public static uint Activate(string appUserModelId, string arguments) {
+      var manager = (IApplicationActivationManager)new ApplicationActivationManager();
+      uint processId;
+      int result = manager.ActivateApplication(appUserModelId, arguments ?? "", ActivateOptions.None, out processId);
+      if (result < 0) {
+        Marshal.ThrowExceptionForHR(result);
+      }
+      return processId;
+    }
+  }
+}
+'@
+}
+
+function Start-DreamSkinCodex {
+  param(
+    [Parameter(Mandatory = $true)][object]$Codex,
+    [AllowNull()][string[]]$ArgumentList
+  )
+
+  $arguments = @()
+  if ($null -ne $ArgumentList) { $arguments = @($ArgumentList) }
+  try {
+    if ($arguments.Count -gt 0) {
+      Start-Process -FilePath $Codex.Executable -ArgumentList $arguments | Out-Null
+    } else {
+      Start-Process -FilePath $Codex.Executable | Out-Null
+    }
+    return
+  } catch {
+    $directLaunchError = $_
+  }
+
+  if (-not $Codex.AppUserModelId) { throw $directLaunchError }
+  Add-DreamSkinAppActivationType
+  $activationArguments = if ($arguments.Count -gt 0) {
+    (@($arguments | ForEach-Object { ConvertTo-DreamSkinProcessArgument -Value $_ }) -join ' ')
+  } else {
+    ''
+  }
+  try {
+    [void][CodexDreamSkin.AppActivationManager]::Activate("$($Codex.AppUserModelId)", $activationArguments)
+  } catch {
+    throw "Codex could not be launched through '$($Codex.Executable)' or AppUserModelId '$($Codex.AppUserModelId)'. Direct launch failed: $($directLaunchError.Exception.Message). App activation failed: $($_.Exception.Message)"
+  }
 }
 
 function Confirm-DreamSkinRestart {
