@@ -14,6 +14,7 @@ const payload = template
 
 assert.match(template, /codex-dream-skin-character/);
 assert.match(template, /dream-character-switcher/);
+assert.match(template, /dream-duty-label/);
 assert.match(template, /dream-completion-stamp/);
 assert.match(template, /dream-daily-memo/);
 assert.match(template, /dream-pet-dock/);

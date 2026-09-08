@@ -467,7 +467,9 @@
     const character = activeCharacter();
     const status = document.querySelector(".dream-signature");
     if (status) {
-      const nextStatus = phraseForCharacter(statusTexts, character, phraseState.statusIndex);
+      const nextStatus = Date.now() < (phraseState.characterNoticeUntil || 0)
+        ? `${characterNames[selectedCharacter]}开始值班`
+        : phraseForCharacter(statusTexts, character, phraseState.statusIndex);
       const statusCopy = status.querySelector?.(".dream-status-copy");
       if (statusCopy) {
         if (statusCopy.textContent !== nextStatus) statusCopy.textContent = nextStatus;
@@ -731,6 +733,7 @@
     if (!chrome || chrome.parentElement !== document.body ||
         !chrome.querySelector?.(".dream-density-label") ||
         !chrome.querySelector?.(".dream-character-switcher") ||
+        !chrome.querySelector?.(".dream-duty-label") ||
         !chrome.querySelector?.(".dream-pet-dock")) {
       chrome?.remove();
       chrome = document.createElement("div");
@@ -738,7 +741,7 @@
       chrome.innerHTML = `
         <div class="dream-brand" aria-hidden="true"><span class="dream-note">鼠</span><span><b>鼠命打工中</b><small>美叽 · 大鼠 · 旺财 主题</small></span></div>
         <div class="dream-character-switcher" role="group" aria-label="今日值班角色">
-          <span>值班</span>
+          <span class="dream-duty-label" aria-live="polite">值班</span>
           ${characters.map((character) => `<button type="button" data-dream-character-choice="${character}" aria-label="${characterNames[character]}值班" title="让${characterNames[character]}值班"></button>`).join("")}
         </div>
         <button type="button" class="dream-signature" aria-label="切换主题浓度">
@@ -763,6 +766,8 @@
     chrome.dataset.dreamDensity = density;
     chrome.dataset.dreamCharacter = activeCharacter();
     const switcher = chrome.querySelector?.(".dream-character-switcher");
+    const dutyLabel = switcher?.querySelector?.(".dream-duty-label");
+    if (dutyLabel) dutyLabel.textContent = `值班·${characterNames[selectedCharacter]}`;
     for (const button of switcher?.querySelectorAll?.("[data-dream-character-choice]") || []) {
       const character = button.dataset.dreamCharacterChoice;
       button.classList.toggle("is-active", character === selectedCharacter);
@@ -770,9 +775,13 @@
       button.onclick = () => {
         selectedCharacter = character;
         phraseState.relayIndex = 0;
+        phraseState.statusIndex = 0;
+        phraseState.statusMemeIdentity = "";
         phraseState.lastThinkingPhrase = "";
+        phraseState.characterNoticeUntil = Date.now() + 2400;
         writeStoredValue(CHARACTER_KEY, selectedCharacter);
         ensure();
+        window.setTimeout(ensure, 2400);
       };
     }
     const dailyMemos = [

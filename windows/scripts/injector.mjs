@@ -422,6 +422,8 @@ async function verifySession(session) {
     const cards = suggestions ? [...suggestions.querySelectorAll('button')].map(box) : [];
     const characterSwitcher = document.querySelector('.dream-character-switcher');
     const petDock = document.querySelector('.dream-pet-dock');
+    const characterButtons = [...document.querySelectorAll('[data-dream-character-choice]')];
+    const selectedCharacter = window.__CODEX_DREAM_SKIN_STATE__?.selectedCharacter ?? null;
     const result = {
       installed: document.documentElement.classList.contains('codex-dream-skin'),
       version: window.__CODEX_DREAM_SKIN_STATE__?.version ?? null,
@@ -435,6 +437,11 @@ async function verifySession(session) {
       cards,
       characterSwitcherPresent: Boolean(characterSwitcher),
       characterSwitcher: box(characterSwitcher),
+      characterButtonCount: characterButtons.length,
+      pressedCharacterCount: characterButtons.filter((button) => button.getAttribute('aria-pressed') === 'true').length,
+      selectedCharacter,
+      selectedCharacterPressed: characterButtons.some((button) =>
+        button.dataset.dreamCharacterChoice === selectedCharacter && button.getAttribute('aria-pressed') === 'true'),
       petDockPresent: Boolean(petDock),
       petDock: box(petDock),
       composer: box(document.querySelector('.composer-surface-chrome')),
@@ -450,6 +457,7 @@ async function verifySession(session) {
     result.pass = result.installed && result.version === result.expectedVersion &&
       result.stylePresent && result.chromePresent &&
       result.characterSwitcherPresent && result.petDockPresent &&
+      result.characterButtonCount === 3 && result.pressedCharacterCount === 1 && result.selectedCharacterPressed &&
       result.chromePointerEvents === 'none' && Boolean(result.mainSurface) &&
       (result.settingsPresent || Boolean(result.sidebar)) &&
       (!result.homePresent || result.suggestionsPresent);

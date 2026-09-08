@@ -2744,6 +2744,7 @@ html.codex-dream-skin.dream-settings-page
 #codex-dream-skin-chrome .dream-character-switcher > span {
   color: #766a59;
   font: 700 10px/1 "Microsoft YaHei UI", sans-serif;
+  white-space: nowrap;
 }
 
 #codex-dream-skin-chrome .dream-character-switcher button {
