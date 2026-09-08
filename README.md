@@ -1,5 +1,7 @@
 # Codex Dream Skin
 
+> 本仓库默认提供 **美叽、大鼠、旺财 Codex 主题**。暖色便签桌面、官方表情包、值班角色、思考短句和单角色桌宠均已配置好，下载后无需自己改图。
+
 <p align="center">
   <strong>中文</strong> · <a href="./README.en.md">English</a>
 </p>
@@ -93,6 +95,41 @@
 - **相对安全**：本机回环 CDP 注入，不改官方二进制与签名
 
 ## 快速开始
+
+### Windows 朋友安装
+
+准备条件：Windows 10/11、已安装并登录 Codex 桌面端，以及 Node.js 22 或更高版本。
+
+1. 点击 GitHub 页面右上角 **Code → Download ZIP** 并解压；也可以运行：
+
+```powershell
+git clone https://github.com/qianyijie601-gif/Codex-Dream-Skin-Dashu-Meiji-Wangcai.git
+cd Codex-Dream-Skin-Dashu-Meiji-Wangcai
+```
+
+2. 第一次安装前关闭 Codex，在仓库目录打开 PowerShell，依次运行：
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\windows\scripts\install-dream-skin.ps1
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\windows\scripts\start-dream-skin.ps1
+```
+
+3. 安装脚本会在桌面和开始菜单创建 **Codex Dream Skin** 快捷方式。以后从该快捷方式启动即可，不必重复安装。
+
+更新主题时，在仓库目录运行：
+
+```powershell
+git pull
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\windows\scripts\start-dream-skin.ps1
+```
+
+恢复官方界面：
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\windows\scripts\restore-dream-skin.ps1
+```
+
+更完整的主题功能和常见问题见 [`docs/meiji-dashu-wangcai-theme.md`](./docs/meiji-dashu-wangcai-theme.md)。
 
 仓库内按平台放了现成脚本（实现细节不同，效果都是「主题化 Codex」）：
 
