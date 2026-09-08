@@ -420,6 +420,8 @@ async function verifySession(session) {
     const home = document.querySelector('.dream-home');
     const suggestions = home?.querySelector('#codex-dream-home-suggestions, .group\\\\/home-suggestions') ?? null;
     const cards = suggestions ? [...suggestions.querySelectorAll('button')].map(box) : [];
+    const characterSwitcher = document.querySelector('.dream-character-switcher');
+    const petDock = document.querySelector('.dream-pet-dock');
     const result = {
       installed: document.documentElement.classList.contains('codex-dream-skin'),
       version: window.__CODEX_DREAM_SKIN_STATE__?.version ?? null,
@@ -431,6 +433,10 @@ async function verifySession(session) {
       suggestionsPresent: Boolean(suggestions),
       hero: box(home?.firstElementChild?.firstElementChild?.firstElementChild),
       cards,
+      characterSwitcherPresent: Boolean(characterSwitcher),
+      characterSwitcher: box(characterSwitcher),
+      petDockPresent: Boolean(petDock),
+      petDock: box(petDock),
       composer: box(document.querySelector('.composer-surface-chrome')),
       mainSurface: box(document.querySelector('main.main-surface, main[class*="_MainContentSurface_"]')),
       sidebar: box(document.querySelector('aside.app-shell-left-panel')),
@@ -443,6 +449,7 @@ async function verifySession(session) {
     };
     result.pass = result.installed && result.version === result.expectedVersion &&
       result.stylePresent && result.chromePresent &&
+      result.characterSwitcherPresent && result.petDockPresent &&
       result.chromePointerEvents === 'none' && Boolean(result.mainSurface) &&
       (result.settingsPresent || Boolean(result.sidebar)) &&
       (!result.homePresent || result.suggestionsPresent);

@@ -12,6 +12,13 @@ const payload = template
   .replace("__DREAM_ART_JSON__", JSON.stringify("data:image/png;base64,AA=="))
   .replaceAll("__DREAM_MEMES_JSON__", JSON.stringify({}));
 
+assert.match(template, /codex-dream-skin-character/);
+assert.match(template, /dream-character-switcher/);
+assert.match(template, /dream-completion-stamp/);
+assert.match(template, /dream-daily-memo/);
+assert.match(template, /dream-pet-dock/);
+assert.match(template, /phraseState\.relayIndex/);
+
 function createFixture(options) {
   const { shellPresent, staleSkin = false, settingsPresent = false } = options;
   const sidebarFollowsShell = !Object.hasOwn(options, "sidebarPresent");

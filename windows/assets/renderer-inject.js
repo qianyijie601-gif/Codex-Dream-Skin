@@ -5,6 +5,9 @@
   const THINKING_ID = "codex-dream-thinking-pill";
   const SUGGESTIONS_ID = "codex-dream-home-suggestions";
   const DENSITY_KEY = "codex-dream-skin-density";
+  const CHARACTER_KEY = "codex-dream-skin-character";
+  const COMPLETION_ID = "codex-dream-completion-stamp";
+  const DAILY_MEMO_ID = "codex-dream-daily-memo";
   const BUILD_KEY = "codex-dream-skin-app-build";
   const densityModes = ["quiet", "standard", "lively"];
   const densityLabels = { quiet: "安静", standard: "标准", lively: "热闹" };
@@ -280,6 +283,10 @@
   };
   let density = previous?.density || readStoredValue(DENSITY_KEY);
   if (!densityModes.includes(density)) density = "standard";
+  const characters = ["dashu", "meiji", "wangcai"];
+  const characterNames = { dashu: "大鼠", meiji: "美叽", wangcai: "旺财" };
+  let selectedCharacter = previous?.selectedCharacter || readStoredValue(CHARACTER_KEY);
+  if (!characters.includes(selectedCharacter)) selectedCharacter = "dashu";
   const phraseState = previous?.phraseState || {
     statusIndex: Math.floor(Date.now() / 10000) % statusTexts.length,
     thinkingIndex: Math.floor(Date.now() / 10000) % thinkingTexts.length,
@@ -287,6 +294,8 @@
   phraseState.memeIndexes ||= {};
   phraseState.lastThinkingPhrase ||= "";
   phraseState.thinkingMeme ||= "";
+  phraseState.relayIndex ||= 0;
+  phraseState.wasGenerating ??= null;
   const artUrl = previous?.artUrl || (() => {
     const comma = artDataUrl.indexOf(",");
     const binary = atob(artDataUrl.slice(comma + 1));
@@ -308,6 +317,10 @@
     document.documentElement?.classList.remove("dream-density-standard");
     document.documentElement?.classList.remove("dream-density-lively");
     document.documentElement?.style.removeProperty("--dream-art");
+    if (document.documentElement?.dataset) {
+      delete document.documentElement.dataset.dreamPetCharacter;
+      delete document.documentElement.dataset.dreamPetState;
+    }
     document.querySelectorAll(".dream-home").forEach((node) => node.classList.remove("dream-home"));
     document.querySelectorAll(".dream-home-shell").forEach((node) => node.classList.remove("dream-home-shell"));
     document.querySelectorAll('[data-dream-main-surface="true"]').forEach((node) => {
@@ -318,11 +331,14 @@
     document.getElementById(CHROME_ID)?.remove();
     document.getElementById(THINKING_ID)?.remove();
     document.getElementById(SUGGESTIONS_ID)?.remove();
+    document.getElementById(COMPLETION_ID)?.remove();
+    document.getElementById(DAILY_MEMO_ID)?.remove();
   };
 
   const isGenerating = () => [...document.querySelectorAll(".composer-surface-chrome button[aria-label]")].some((button) => {
     return button.getClientRects().length > 0 && /^(?:停止|stop)$/i.test(button.getAttribute("aria-label") || "");
   });
+  if (phraseState.wasGenerating === null) phraseState.wasGenerating = isGenerating();
 
   const composerText = (surface) => {
     if (surface?.matches?.('[contenteditable="true"]')) return surface.textContent || "";
@@ -367,6 +383,22 @@
   };
 
   const characterFromIndex = (index) => ["dashu", "meiji", "wangcai"][index % 3];
+  const petPoseIndexes = {
+    dashu: { idle: 6, running: 11, review: 7 },
+    meiji: { idle: 6, running: 11, review: 7 },
+    wangcai: { idle: 6, running: 10, review: 7 },
+  };
+
+  const activeCharacter = () => {
+    if (!isGenerating()) return selectedCharacter;
+    const selectedIndex = characters.indexOf(selectedCharacter);
+    return characters[(selectedIndex + phraseState.relayIndex) % characters.length];
+  };
+
+  const phraseForCharacter = (items, character, index) => {
+    const matching = items.filter((text) => characterFromText(text) === character);
+    return matching[index % Math.max(matching.length, 1)] || items[index % items.length];
+  };
 
   const memePoolSizes = { dashu: 20, meiji: 20, wangcai: 20 };
   const nextMeme = (character) => {
@@ -407,7 +439,9 @@
       setMeme(header, "");
     }
     let pill = document.getElementById(THINKING_ID);
-    const phrase = thinkingTexts[phraseState.thinkingIndex % thinkingTexts.length].replace(/…+$/, "");
+    const thinkingCharacter = activeCharacter();
+    const phrase = phraseForCharacter(thinkingTexts, thinkingCharacter, phraseState.thinkingIndex)
+      .replace(/…+$/, "");
     if (phraseState.lastThinkingPhrase !== phrase) {
       phraseState.lastThinkingPhrase = phrase;
       phraseState.thinkingMeme = nextMeme(characterFromText(phrase));
@@ -430,18 +464,23 @@
 
   const decorateWorkspace = (shellSidebar) => {
     updateThinkingPill();
+    const character = activeCharacter();
     const status = document.querySelector(".dream-signature");
     if (status) {
-      const nextStatus = statusTexts[phraseState.statusIndex % statusTexts.length];
+      const nextStatus = phraseForCharacter(statusTexts, character, phraseState.statusIndex);
       const statusCopy = status.querySelector?.(".dream-status-copy");
       if (statusCopy) {
         if (statusCopy.textContent !== nextStatus) statusCopy.textContent = nextStatus;
       } else if (status.textContent !== nextStatus) {
         status.textContent = nextStatus;
       }
-      const character = characterFromIndex(phraseState.statusIndex);
       status.dataset.dreamCharacter = character;
-      setMeme(status, `${character}-${phraseState.statusIndex % memePoolSizes[character]}`);
+      const statusMemeIdentity = `${character}:${phraseState.statusIndex}`;
+      if (phraseState.statusMemeIdentity !== statusMemeIdentity) {
+        phraseState.statusMemeIdentity = statusMemeIdentity;
+        phraseState.statusMeme = nextMeme(character);
+      }
+      setMeme(status, phraseState.statusMeme);
       status.classList.remove("dream-signature-thinking");
     }
 
@@ -461,9 +500,11 @@
       surface.classList.add("dream-composer-note");
       const text = composerText(surface);
       surface.classList.toggle("dream-composer-empty", text.trim().length === 0);
-      const character = characterFromIndex(phraseState.statusIndex);
+      const previousCharacter = surface.dataset.dreamCharacter;
       surface.dataset.dreamCharacter = character;
-      setMeme(surface, `${character}-${phraseState.statusIndex % memePoolSizes[character]}`);
+      if (!surface.dataset.dreamMeme || previousCharacter !== character) {
+        setMeme(surface, nextMeme(character));
+      }
     }
 
     for (const node of document.querySelectorAll(".dream-thinking-state")) {
@@ -687,12 +728,19 @@
 
     shellMain.classList.toggle("dream-home-shell", Boolean(home));
     let chrome = document.getElementById(CHROME_ID);
-    if (!chrome || chrome.parentElement !== document.body || !chrome.querySelector?.(".dream-density-label")) {
+    if (!chrome || chrome.parentElement !== document.body ||
+        !chrome.querySelector?.(".dream-density-label") ||
+        !chrome.querySelector?.(".dream-character-switcher") ||
+        !chrome.querySelector?.(".dream-pet-dock")) {
       chrome?.remove();
       chrome = document.createElement("div");
       chrome.id = CHROME_ID;
       chrome.innerHTML = `
         <div class="dream-brand" aria-hidden="true"><span class="dream-note">鼠</span><span><b>鼠命打工中</b><small>美叽 · 大鼠 · 旺财 主题</small></span></div>
+        <div class="dream-character-switcher" role="group" aria-label="今日值班角色">
+          <span>值班</span>
+          ${characters.map((character) => `<button type="button" data-dream-character-choice="${character}" aria-label="${characterNames[character]}值班" title="让${characterNames[character]}值班"></button>`).join("")}
+        </div>
         <button type="button" class="dream-signature" aria-label="切换主题浓度">
           <span class="dream-status-copy">今日精神状态良好</span>
           <span class="dream-density-label">标准</span>
@@ -700,7 +748,9 @@
         <button type="button" class="dream-repair-button" hidden>修复主题</button>
         <div class="dream-sparkles" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
         <div class="dream-ribbon" aria-hidden="true"><span>便签</span>摸鱼<span>续命</span></div>
-        <div class="dream-polaroid" aria-hidden="true"></div>`;
+        <div class="dream-polaroid" aria-hidden="true"></div>
+        <aside id="${DAILY_MEMO_ID}" class="dream-daily-memo" aria-label="今日便签"></aside>
+        <div class="dream-pet-dock" aria-hidden="true"><small></small></div>`;
       document.body.appendChild(chrome);
     }
     chrome.querySelector?.(".dream-thinking-header")?.remove();
@@ -711,6 +761,36 @@
     chrome.style.height = `${Math.round(shellBox.height)}px`;
     chrome.classList.toggle("dream-home-shell", Boolean(home));
     chrome.dataset.dreamDensity = density;
+    chrome.dataset.dreamCharacter = activeCharacter();
+    const switcher = chrome.querySelector?.(".dream-character-switcher");
+    for (const button of switcher?.querySelectorAll?.("[data-dream-character-choice]") || []) {
+      const character = button.dataset.dreamCharacterChoice;
+      button.classList.toggle("is-active", character === selectedCharacter);
+      button.setAttribute("aria-pressed", String(character === selectedCharacter));
+      button.onclick = () => {
+        selectedCharacter = character;
+        phraseState.relayIndex = 0;
+        phraseState.lastThinkingPhrase = "";
+        writeStoredValue(CHARACTER_KEY, selectedCharacter);
+        ensure();
+      };
+    }
+    const dailyMemos = [
+      "大鼠说：先完成一小步",
+      "美叽说：重点已经圈好啦",
+      "旺财说：记得先保存",
+      "今天不和自己较劲",
+      "把难题拆成小便签",
+      "累了就喝口水再继续",
+      "小队今日也准时到岗",
+    ];
+    const memo = chrome.querySelector?.(`#${DAILY_MEMO_ID}`);
+    if (memo) {
+      const today = new Date();
+      const daySeed = Math.floor(Date.UTC(today.getFullYear(), today.getMonth(), today.getDate()) / 86400000);
+      memo.hidden = !home;
+      memo.innerHTML = `<small>今日便签</small><b>${dailyMemos[daySeed % dailyMemos.length]}</b>`;
+    }
     const densityButton = chrome.querySelector?.(".dream-signature");
     const densityLabel = chrome.querySelector?.(".dream-density-label");
     if (densityLabel) densityLabel.textContent = densityLabels[density];
@@ -724,6 +804,42 @@
       };
     }
     decorateWorkspace(shellSidebar);
+
+    const generating = isGenerating();
+    if (phraseState.wasGenerating && !generating) {
+      document.getElementById(COMPLETION_ID)?.remove();
+      const stamp = document.createElement("div");
+      stamp.id = COMPLETION_ID;
+      stamp.className = "dream-completion-stamp";
+      const completedBy = characterNames[phraseState.lastActiveCharacter || selectedCharacter];
+      phraseState.completedCharacter = phraseState.lastActiveCharacter || selectedCharacter;
+      stamp.innerHTML = `<strong>已完成</strong><span>${completedBy}盖章验收</span>`;
+      chrome.appendChild(stamp);
+      phraseState.petCelebratingUntil = Date.now() + 3200;
+      window.setTimeout(() => {
+        stamp.remove();
+        ensure();
+      }, 3200);
+    }
+    phraseState.wasGenerating = generating;
+    phraseState.lastActiveCharacter = activeCharacter();
+    const petState = generating
+      ? "running"
+      : Date.now() < (phraseState.petCelebratingUntil || 0) ? "review" : "idle";
+    const pet = chrome.querySelector?.(".dream-pet-dock");
+    if (pet) {
+      const petCharacter = petState === "review"
+        ? phraseState.completedCharacter || phraseState.lastActiveCharacter
+        : phraseState.lastActiveCharacter;
+      pet.dataset.dreamCharacter = petCharacter;
+      pet.dataset.dreamPetState = petState;
+      pet.querySelector?.("small")?.replaceChildren(`${characterNames[petCharacter]}${petState === "running" ? "工作中" : petState === "review" ? "验收完毕" : "值班中"}`);
+      setMeme(pet, `${petCharacter}-${petPoseIndexes[petCharacter][petState]}`);
+    }
+    if (root.dataset) {
+      root.dataset.dreamPetCharacter = phraseState.lastActiveCharacter;
+      root.dataset.dreamPetState = petState;
+    }
 
     const healthIssues = [];
     if (!document.getElementById(STYLE_ID)?.textContent) healthIssues.push("样式未加载");
@@ -804,6 +920,10 @@
   const thinkingTimer = setInterval(() => {
     if (!isGenerating()) return;
     phraseState.thinkingIndex = (phraseState.thinkingIndex + 1) % thinkingTexts.length;
+    if (phraseState.thinkingIndex % 2 === 0) {
+      phraseState.relayIndex = (phraseState.relayIndex + 1) % characters.length;
+      phraseState.lastThinkingPhrase = "";
+    }
     ensure();
   }, 10000);
   window[STATE_KEY] = {
@@ -818,6 +938,7 @@
     phraseState,
     artUrl,
     get density() { return density; },
+    get selectedCharacter() { return selectedCharacter; },
     selfCheck() { return { ...(phraseState.health || {}) }; },
     version: "1.0.0",
   };

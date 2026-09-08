@@ -2722,3 +2722,193 @@ html.codex-dream-skin.dream-settings-page
 @media (max-width: 1120px) {
   #codex-dream-skin-chrome .dream-repair-button { right: 342px; }
 }
+
+/* Character duty roster and small state moments. */
+#codex-dream-skin-chrome .dream-character-switcher {
+  position: absolute;
+  z-index: 12;
+  top: 5px;
+  right: 330px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 6px;
+  border: 1px solid rgba(94, 82, 64, .14);
+  border-radius: 8px;
+  background: rgba(255, 250, 240, .90);
+  box-shadow: 0 3px 9px rgba(83, 70, 49, .08);
+  pointer-events: auto;
+}
+
+#codex-dream-skin-chrome .dream-character-switcher > span {
+  color: #766a59;
+  font: 700 10px/1 "Microsoft YaHei UI", sans-serif;
+}
+
+#codex-dream-skin-chrome .dream-character-switcher button {
+  width: 27px;
+  height: 27px;
+  padding: 0;
+  border: 1px solid rgba(94, 82, 64, .12);
+  border-radius: 50%;
+  background-color: #fffaf0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: .58;
+  cursor: pointer;
+  transition: opacity 120ms ease, transform 120ms ease, box-shadow 120ms ease;
+}
+
+#codex-dream-skin-chrome .dream-character-switcher button[data-dream-character-choice="dashu"] { background-image: url("__DREAM_AVATAR_DASHU__"); }
+#codex-dream-skin-chrome .dream-character-switcher button[data-dream-character-choice="meiji"] { background-image: url("__DREAM_AVATAR_MEIJI__"); }
+#codex-dream-skin-chrome .dream-character-switcher button[data-dream-character-choice="wangcai"] { background-image: url("__DREAM_AVATAR_WANGCAI__"); }
+
+#codex-dream-skin-chrome .dream-character-switcher button:hover,
+#codex-dream-skin-chrome .dream-character-switcher button.is-active {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+#codex-dream-skin-chrome .dream-character-switcher button.is-active {
+  box-shadow: 0 0 0 2px #fffaf0, 0 0 0 4px rgba(217, 164, 65, .68);
+}
+
+#codex-dream-skin-chrome .dream-character-switcher button:focus-visible {
+  outline: 2px solid #b47b1f;
+  outline-offset: 2px;
+}
+
+#codex-dream-skin-chrome .dream-daily-memo {
+  position: absolute;
+  z-index: 5;
+  top: 78px;
+  left: 30px;
+  width: 184px;
+  min-height: 76px;
+  padding: 15px 16px 12px;
+  border: 1px solid rgba(94, 82, 64, .16);
+  border-radius: 6px;
+  color: #51483c;
+  background: #f8e5a6;
+  box-shadow: 0 9px 18px rgba(83, 70, 49, .13);
+  transform: rotate(-1.5deg);
+  pointer-events: none;
+}
+
+#codex-dream-skin-chrome .dream-daily-memo[hidden] { display: none !important; }
+#codex-dream-skin-chrome .dream-daily-memo small { display: block; margin-bottom: 8px; color: #947231; font: 700 10px/1 "Microsoft YaHei UI", sans-serif; }
+#codex-dream-skin-chrome .dream-daily-memo b { display: block; font: 750 13px/1.45 "Microsoft YaHei UI", sans-serif; }
+
+#codex-dream-skin-chrome .dream-pet-dock {
+  position: absolute;
+  z-index: 7;
+  right: 24px;
+  bottom: 190px;
+  width: 108px;
+  height: 126px;
+  display: grid;
+  place-items: end center;
+  pointer-events: none;
+}
+
+#codex-dream-skin-chrome .dream-pet-dock::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 18px;
+  background-image: var(--dream-meme);
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: contain;
+  filter: drop-shadow(0 6px 6px rgba(83, 70, 49, .16));
+  transform-origin: center bottom;
+  animation: dream-pet-breathe 2.8s ease-in-out infinite;
+}
+
+#codex-dream-skin-chrome .dream-pet-dock[data-dream-pet-state="running"]::before {
+  animation-duration: 1.25s;
+}
+
+#codex-dream-skin-chrome .dream-pet-dock[data-dream-pet-state="review"]::before {
+  animation: dream-pet-celebrate .52s ease-in-out 3;
+}
+
+#codex-dream-skin-chrome .dream-pet-dock small {
+  position: relative;
+  z-index: 1;
+  padding: 3px 8px;
+  border: 1px solid rgba(94, 82, 64, .12);
+  border-radius: 6px;
+  color: #6f6251;
+  background: rgba(255, 250, 240, .92);
+  box-shadow: 0 3px 8px rgba(83, 70, 49, .08);
+  font: 700 10px/1.2 "Microsoft YaHei UI", sans-serif;
+}
+
+@keyframes dream-pet-breathe {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-3px) scale(1.015); }
+}
+
+@keyframes dream-pet-celebrate {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-7px) rotate(3deg); }
+}
+
+#codex-dream-skin-chrome .dream-completion-stamp {
+  position: absolute;
+  z-index: 30;
+  top: 70px;
+  left: 50%;
+  width: 132px;
+  height: 76px;
+  display: grid;
+  place-content: center;
+  gap: 4px;
+  border: 3px double rgba(176, 74, 55, .78);
+  border-radius: 50%;
+  color: #a34939;
+  background: rgba(255, 248, 232, .94);
+  box-shadow: 0 8px 20px rgba(83, 70, 49, .16);
+  text-align: center;
+  transform: translateX(-50%) rotate(-7deg);
+  pointer-events: none;
+  animation: dream-stamp-in 260ms ease-out both;
+}
+
+#codex-dream-skin-chrome .dream-completion-stamp strong { font: 900 21px/1 "Microsoft YaHei UI", sans-serif; }
+#codex-dream-skin-chrome .dream-completion-stamp span { font: 700 10px/1 "Microsoft YaHei UI", sans-serif; }
+
+@keyframes dream-stamp-in {
+  from { opacity: 0; transform: translateX(-50%) rotate(-12deg) scale(1.35); }
+  to { opacity: 1; transform: translateX(-50%) rotate(-7deg) scale(1); }
+}
+
+@media (max-width: 1120px) {
+  #codex-dream-skin-chrome .dream-character-switcher { display: none !important; }
+  #codex-dream-skin-chrome .dream-brand { display: none !important; }
+  #codex-dream-skin-chrome .dream-daily-memo { display: none !important; }
+  #codex-dream-skin-chrome .dream-pet-dock { right: 12px; width: 88px; height: 106px; }
+}
+
+@media (max-width: 900px) {
+  #codex-dream-skin-chrome .dream-pet-dock { display: none !important; }
+}
+
+@media (max-width: 760px) {
+  #codex-dream-skin-chrome .dream-character-switcher { display: none !important; }
+}
+
+:root.codex-dream-skin.dream-focus-mode #codex-dream-skin-chrome .dream-pet-dock {
+  opacity: 0;
+  visibility: hidden;
+}
+
+:root.codex-dream-skin.dream-settings-page #codex-dream-skin-chrome :is(
+  .dream-character-switcher,
+  .dream-daily-memo,
+  .dream-pet-dock
+) {
+  display: none !important;
+}

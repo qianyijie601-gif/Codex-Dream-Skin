@@ -3,6 +3,12 @@
   "usage": "仅用于个人非商业主题；转载分享请注明作者，禁止商用。",
   "officialAccount": "https://space.bilibili.com/386231630",
   "officialOriginalityNotice": "https://www.bilibili.com/opus/956647258743373847",
+  "officialMotion": {
+    "source": "https://www.bilibili.com/opus/956647258743373847",
+    "count": 9,
+    "path": "official-motion/author-opus-956647258743373847",
+    "usage": "作者公开发布的原始 GIF，仅作非商业主题动作参考与原帧展示。"
+  },
   "characters": {
     "dashu": {
       "count": 20,
