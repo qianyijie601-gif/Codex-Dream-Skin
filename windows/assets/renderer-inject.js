@@ -768,20 +768,36 @@
     const switcher = chrome.querySelector?.(".dream-character-switcher");
     const dutyLabel = switcher?.querySelector?.(".dream-duty-label");
     if (dutyLabel) dutyLabel.textContent = `值班·${characterNames[selectedCharacter]}`;
+    const selectCharacter = (character) => {
+      if (!characters.includes(character)) return;
+      selectedCharacter = character;
+      phraseState.relayIndex = 0;
+      phraseState.statusIndex = 0;
+      phraseState.statusMemeIdentity = "";
+      phraseState.lastThinkingPhrase = "";
+      phraseState.characterNoticeUntil = Date.now() + 2400;
+      writeStoredValue(CHARACTER_KEY, selectedCharacter);
+      ensure();
+      window.setTimeout(ensure, 2400);
+    };
     for (const button of switcher?.querySelectorAll?.("[data-dream-character-choice]") || []) {
       const character = button.dataset.dreamCharacterChoice;
       button.classList.toggle("is-active", character === selectedCharacter);
       button.setAttribute("aria-pressed", String(character === selectedCharacter));
-      button.onclick = () => {
-        selectedCharacter = character;
-        phraseState.relayIndex = 0;
-        phraseState.statusIndex = 0;
-        phraseState.statusMemeIdentity = "";
-        phraseState.lastThinkingPhrase = "";
-        phraseState.characterNoticeUntil = Date.now() + 2400;
-        writeStoredValue(CHARACTER_KEY, selectedCharacter);
-        ensure();
-        window.setTimeout(ensure, 2400);
+      button.onclick = (event) => {
+        if (event.detail !== 0) return;
+        selectCharacter(character);
+      };
+    }
+    if (switcher) {
+      switcher.onpointerdown = (event) => {
+        if (event.button !== 0) return;
+        const directChoice = event.target.closest?.("[data-dream-character-choice]")?.dataset.dreamCharacterChoice;
+        const currentIndex = characters.indexOf(selectedCharacter);
+        const character = directChoice || characters[(currentIndex + 1) % characters.length];
+        event.preventDefault();
+        event.stopPropagation();
+        selectCharacter(character);
       };
     }
     const dailyMemos = [

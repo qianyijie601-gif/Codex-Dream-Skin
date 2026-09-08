@@ -2739,6 +2739,9 @@ html.codex-dream-skin.dream-settings-page
   background: rgba(255, 250, 240, .90);
   box-shadow: 0 3px 9px rgba(83, 70, 49, .08);
   pointer-events: auto;
+  -webkit-app-region: no-drag !important;
+  user-select: none;
+  touch-action: manipulation;
 }
 
 #codex-dream-skin-chrome .dream-character-switcher > span {
@@ -2748,8 +2751,8 @@ html.codex-dream-skin.dream-settings-page
 }
 
 #codex-dream-skin-chrome .dream-character-switcher button {
-  width: 27px;
-  height: 27px;
+  width: 31px;
+  height: 31px;
   padding: 0;
   border: 1px solid rgba(94, 82, 64, .12);
   border-radius: 50%;
@@ -2759,6 +2762,9 @@ html.codex-dream-skin.dream-settings-page
   background-size: contain;
   opacity: .58;
   cursor: pointer;
+  pointer-events: auto;
+  -webkit-app-region: no-drag !important;
+  touch-action: manipulation;
   transition: opacity 120ms ease, transform 120ms ease, box-shadow 120ms ease;
 }
 
@@ -2907,7 +2913,6 @@ html.codex-dream-skin.dream-settings-page
 }
 
 :root.codex-dream-skin.dream-settings-page #codex-dream-skin-chrome :is(
-  .dream-character-switcher,
   .dream-daily-memo,
   .dream-pet-dock
 ) {
